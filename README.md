@@ -17,12 +17,9 @@ We have designed a set of explorer modular components for the Substrate ecosyste
 
 ### More documents
 
-- [about-system](./documents/about-system.md)
 - [about-framework](./documents/about-framework.md)
 - [api-docs](./documents/api-docs.md)
 - [database-init](./documents/database-init.sql)
-- [about-ui](./documents/about-ui.md)
-- [about-components](./documents/about-components.md)
 - [testing-guide](./documents/testing-guide.md)
 
 
