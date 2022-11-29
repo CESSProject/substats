@@ -113,6 +113,3 @@ yarn run start:ui
 └── web.config          # server config
 ```
 
-## Grants program
-https://github.com/CESSProject/Grants-Program/blob/master/applications/substats.md
-
