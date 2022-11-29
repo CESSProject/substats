@@ -1,0 +1,18 @@
+<!--
+ * @Description: 
+ * @Autor: fage
+ * @Date: 2022-07-11 18:00:50
+ * @LastEditors: fage
+ * @LastEditTime: 2022-07-11 19:17:18
+-->
+<script>
+    var socket = new WebSocket("ws://localhost:454/ws/");
+    socket.addEventListener("open", function (event) {
+        console.log("socket is open");
+        socket.send("这里是html发送过来的");
+    });
+
+    socket.addEventListener("message", function (event) {
+        console.log("Message from server", event.data);
+    });
+</script>
