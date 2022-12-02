@@ -11,8 +11,6 @@ We have designed a set of explorer modular components for the Substrate ecosyste
 
 ● **One-click construction**: Learn from the features of Polkadot.js App. The Substats framework only needs to configure a small amount of information to achieve one-click deployment and startup. Significantly reduce development costs.
 
-● **Modular UI components**: The UI components of Substats are all decoupled, allowing developers to customize the development of UI components with low threshold.
-
 ● **Open source and security**: Substats only provides completely open source code, and is not responsible for replacing management and operation services. All services are deployed and operated by the project party, avoiding trust costs.
 
 ### More documents
@@ -30,15 +28,6 @@ We have designed a set of explorer modular components for the Substrate ecosyste
 - Server:Express
 - Database:Mysql
 - Polkadot
-
-### 2) frontend UI
-
-- React
-- Ant-design
-- Ant-design/charts
-- React-router-dom
-- Styled-components
-- Reduxjs/toolkit
 
 ## 3. Install guide
 
@@ -65,16 +54,6 @@ npm install
 // or
 yarn install
 ```
-
-### 3) Install frontend UI
-
-```
-cd ui
-npm install
-// or
-yarn install
-```
-
 ## 4. Run guide
 
 ### 1) Run API server
@@ -83,13 +62,6 @@ yarn install
 npm run start
 // or
 yarn run start
-```
-### 2) Run frontend UI
-
-```
-npm run start:ui
-// or
-yarn run start:ui
 ```
 
 ## 5. Project file structure
@@ -101,10 +73,6 @@ yarn run start:ui
 ├── controls/           # control layer
 ├── dal/                # data Access Layer
 ├── routes/             # server routes
-├── ui                  # web ui (react)
-│   ├── build/          # builded file
-│   ├── public/         # static asset
-│   ├── src/            # react source code
 ├── .gitignore          # git ignore file
 ├── app.js              # server main
 └── web.config          # server config
