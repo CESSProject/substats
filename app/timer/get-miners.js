@@ -2,8 +2,8 @@
  * @Description:
  * @Autor: fage
  * @Date: 2022-07-12 15:39:39
- * @LastEditors: chenbinfa
- * @LastEditTime: 2022-09-06 16:12:55
+ * @LastEditors: lanmeng656 cbf0311@sina.com
+ * @LastEditTime: 2022-12-05 09:14:11
  * @description: about
  * @author: chenbinfa
  */
@@ -146,4 +146,6 @@ function toNumber(v) {
   }
   return v;
 }
-main();
+// main();
+
+module.exports = main;

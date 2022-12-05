@@ -1,0 +1,65 @@
+body {
+  background-color: #009688;
+}
+
+#app {
+  width: 98%;
+  margin: 1% auto;
+  display: block;
+  max-width: 1000px;
+}
+
+.mini-card {
+  margin-bottom: 10px;
+}
+
+.el-table .warning-row {
+  background: oldlace;
+}
+
+.el-table .success-row {
+  background: #f0f9eb;
+}
+
+.el-table .info-row {
+  background: #fff;
+}
+
+.el-table .loading-row {
+  background: yellow;
+}
+
+
+.status-ok {
+  font-size: 20px;
+  color: green;
+}
+
+.status-loading {
+  font-size: 20px;
+  color: #999;
+}
+
+.status-error {
+  font-size: 20px;
+  color: red;
+}
+
+.blackborad {
+  display: block;
+  overflow: hidden;
+  clear: both;
+  background-color: #000;
+  color: #fff;
+  padding: 10px;
+  height: 300px;
+  overflow-y: auto;
+}
+
+.blackborad span {
+  color: #fff;
+}
+
+.blackborad label {
+  color: #76d91b;
+}

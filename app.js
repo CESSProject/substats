@@ -12,6 +12,7 @@ const bodyParser = require("body-parser");
 const expressWs = require("express-ws");
 require("./util/add-functions");
 const webconfig = require("./webconfig");
+const myapp = require("./app/index");
 global.webconfig = webconfig;
 const port = webconfig.port.http || 80;
 
@@ -59,6 +60,7 @@ app.use(bodyParser.urlencoded({ extended: false, limit: "10000kb" }));
 app.use(cookieParser());
 app.use(sessionHelper());
 app.use(express.static(path.join(__dirname, "ui/build")));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", routes);
 app.use("/api", api);
@@ -90,6 +92,7 @@ global.wsClientList = [];
 initDotChain();
 sub();
 init();
+myapp();
 
 app.listen(port);
 console.log("listening on ", port);

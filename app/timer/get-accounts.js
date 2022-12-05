@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-12 15:39:39
  * @LastEditors: lanmeng656 cbf0311@sina.com
- * @LastEditTime: 2022-10-13 17:33:56
+ * @LastEditTime: 2022-12-05 09:14:01
  * @description: auto record everyday power to db
  * @author: chenbinfa
  */
@@ -99,7 +99,8 @@ async function getBalances(id) {
   let result = await api.query.system.account(id);
   return parseInt(result.data.free.toJSON(), 16);
 }
-main();
+module.exports = main;
+// main();
 // getBalances("cXffK7BmstE5rXcK8pxKLufkffp9iASMntxUm6ctpR6xS3icV").then(
 //   console.log,
 //   console.log

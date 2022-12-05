@@ -2,8 +2,8 @@
  * @Description:
  * @Autor: fage
  * @Date: 2022-08-05 11:15:38
- * @LastEditors: chenbinfa
- * @LastEditTime: 2022-08-11 19:58:51
+ * @LastEditors: lanmeng656 cbf0311@sina.com
+ * @LastEditTime: 2022-12-05 09:14:29
  * @description: about
  * @author: chenbinfa
  */
@@ -40,4 +40,6 @@ async function main() {
   }
   await main();
 }
-main().then(() => {}, console.log);
+// main().then(() => {}, console.log);
+
+module.exports = main;

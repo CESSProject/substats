@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-12 15:39:39
  * @LastEditors: lanmeng656 cbf0311@sina.com
- * @LastEditTime: 2022-10-14 09:26:15
+ * @LastEditTime: 2022-12-05 17:20:09
  * @description: about
  * @author: chenbinfa
  */
@@ -264,5 +264,20 @@ async function startDo(start, end) {
 
 function showLog(...msg) {
   // console.log(...msg);
+  sendLog("ok", msg.join(" "));
 }
-main();
+function sendLog(msg, data) {
+  const clientList = global.wsClientList;
+  if (!clientList || clientList.length == 0) return;
+  let apiName = "sync block";
+  let json = JSON.stringify({ apiName, msg, data });
+  clientList.forEach((c) => {
+    try {
+      c.send(json);
+    } catch (e) {
+      console.log(e);
+    }
+  });
+}
+// main();
+module.exports = main;

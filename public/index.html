@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>System Run Status</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="element-ui/index.css" />
+  <link rel="stylesheet" href="css/index.css" />
+</head>
+
+<body>
+  <div id="app">
+    <el-card class="mini-card">
+      <div slot="header" class="clearfix">
+        <span>System Run Status</span>
+        <el-button v-if="!loading" style="float: right; padding: 3px 0" type="text" @click="got"
+          icon="el-icon-refresh-right">Recheck
+        </el-button>
+      </div>
+      <div>
+        <el-table :data="systemStatus" style="width: 100%" :row-class-name="tableRowClassName">
+          <el-table-column prop="title" label="Title" width="280">
+          </el-table-column>
+          <el-table-column prop="status" label="Status" width="180">
+            <template slot-scope="scope">
+              <i v-if="scope.row.status=='ok'" class="el-icon-circle-check status-ok"></i>
+              <i v-else-if="scope.row.status=='waiting'" class="el-icon-time status-loading"></i>
+              <i v-else-if="scope.row.status=='loading'" class="el-icon-loading status-loading"></i>
+              <i v-else class="el-icon-warning status-error"> {{scope.row.status}}</i>
+            </template>
+          </el-table-column>
+          <el-table-column prop="about" label="About">
+          </el-table-column>
+        </el-table>
+      </div>
+    </el-card>
+
+    <el-card class="mini-card">
+      <div slot="header" class="clearfix">
+        <span>Block synchronization status </span>
+      </div>
+      <div class="blackborad" id="blackborad">
+        <div v-for="item in shellTxt"><span>{{item.k}}</span><label>{{item.v}}</label></div>
+      </div>
+    </el-card>
+
+  </div>
+  <script src="js/ws.js"></script>
+  <script src="js/vue.min.js"></script>
+  <script src="element-ui/index.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/index.js"></script>
+</body>
+
+</html>
