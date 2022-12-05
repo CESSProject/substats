@@ -3,6 +3,7 @@ var vm = new Vue({
   el: "#app",
   data: {
     loading: false,
+    blockHeight: 0,
     systemStatus: [
       {
         title: "System startup",
@@ -38,9 +39,10 @@ var vm = new Vue({
       ws = new WS(
         function (json) {
           if (json.apiName == "blockInfo") {
-            that.showMsgInBlackborad("new block :", json.data.blockHeight);
+            that.showMsgInBlackborad("new block：", json.data.blockHeight);
+            that.blockHeight = json.data.blockHeight;
           } else if (json.apiName == "sync block") {
-            that.showMsgInBlackborad("synchronization block", json.data);
+            that.showMsgInBlackborad("synchronization block：", json.data);
           }
         },
         function () {

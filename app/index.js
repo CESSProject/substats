@@ -4,7 +4,7 @@ let syncBlock = require("./sync-block");
 
 module.exports = main;
 function main() {
-  getAcount();
-  sumTxCount();
+  // getAcount();
+  // sumTxCount();
   syncBlock();
 }

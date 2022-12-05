@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-12 15:39:39
  * @LastEditors: lanmeng656 cbf0311@sina.com
- * @LastEditTime: 2022-12-05 17:20:09
+ * @LastEditTime: 2022-12-05 17:29:35
  * @description: about
  * @author: chenbinfa
  */
@@ -44,6 +44,7 @@ async function getBlock(value) {
   const blockInfo = await api.rpc.chain.getBlock(hash);
   const blockHeight = blockInfo.block.header.number.toNumber();
   showLog("dalBlock.findWithQuery,blockHeight:", blockHeight);
+  sendLog("ok", "saving block " + blockHeight);
   const tmp = await dalBlock.findWithQuery({ blockHeight });
   if (tmp.length > 0) {
     return console.log("Item is exists");
@@ -55,6 +56,7 @@ async function getBlock(value) {
   showLog("saveBlock", timestamp);
   await saveBlock(hash, blockHeight, blockInfo, timestamp);
   console.log("block sync sccuess", blockHeight);
+  sendLog("ok", "save block sccuess " + blockHeight);
 }
 async function saveBlock(hash, blockHeight, src, timestamp) {
   let blockInfo = src.toHuman();
@@ -264,7 +266,7 @@ async function startDo(start, end) {
 
 function showLog(...msg) {
   // console.log(...msg);
-  sendLog("ok", msg.join(" "));
+  // sendLog("ok", msg.join(" "));
 }
 function sendLog(msg, data) {
   const clientList = global.wsClientList;

@@ -39,6 +39,7 @@
     <el-card class="mini-card">
       <div slot="header" class="clearfix">
         <span>Block synchronization status </span>
+        <el-button v-if="blockHeight" style="float:right;" type="success">BlockHeight:{{blockHeight}}</el-button>
       </div>
       <div class="blackborad" id="blackborad">
         <div v-for="item in shellTxt"><span>{{item.k}}</span><label>{{item.v}}</label></div>
