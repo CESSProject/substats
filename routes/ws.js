@@ -3,12 +3,14 @@
  * @Autor: fage
  * @Date: 2022-07-11 19:45:15
  * @LastEditors: lanmeng656 cbf0311@sina.com
- * @LastEditTime: 2022-12-05 17:09:48
+ * @LastEditTime: 2022-12-05 17:55:33
  * @description: about
  * @author: chenbinfa
  */
 const log = require("../util/mylog");
 const Dal = require("../dal/dal-common");
+const common = require("../util/common");
+
 async function main(ws, req) {
   let list = global.wsClientList;
   ws.send(
@@ -23,7 +25,8 @@ async function main(ws, req) {
     log("client count ", list.length);
   });
   ws.on("message", function (data) {
-    systemStatus(ws, data);
+    let json = JSON.parse(data);
+    systemStatus(ws, json);
   });
 }
 
@@ -44,7 +47,14 @@ async function systemStatus(ws, json) {
     }
   } else if (json.way == "Connect chain node RPC") {
     try {
-      json.msg = global.api ? "ok" : "fail";
+      for (let i = 0; i < 1000; i++) {
+        json.msg = global.api ? "ok" : "fail";
+        if (json.msg != "ok") {
+          common.sleep(500);
+        } else {
+          break;
+        }
+      }
       json.data = global.webconfig.wsnode.nodeURL;
     } catch (e) {
       json.msg = "fail";
@@ -54,12 +64,13 @@ async function systemStatus(ws, json) {
       const dal = new Dal("tb_block_info");
       let list = await dal.getAllTableNames();
       json.msg = list ? "ok" : "fail";
-      json.data = list;
+      json.data = "tables:" + list.map((t) => t.table_name).join(",");
     } catch (e) {
       json.msg = "fail";
     }
   }
-  ws.send(json);
+  ws.send(JSON.stringify(json));
+  // ws.send("ffffffffffffff");
 }
 
 module.exports = main;

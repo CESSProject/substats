@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-12 15:39:39
  * @LastEditors: lanmeng656 cbf0311@sina.com
- * @LastEditTime: 2022-12-05 17:29:35
+ * @LastEditTime: 2022-12-05 17:59:20
  * @description: about
  * @author: chenbinfa
  */
@@ -104,14 +104,18 @@ async function saveTx(blockHash, blockHeight, src, events) {
         showLog("continue 1 of ", index);
         continue;
       }
-      let json = enx.toHuman();
+      // let json = enx.toHuman();
+      let json = enx.toJSON();
       let hash = enx.hash.toHex();
       // console.log(json, hash);
       // if (json.method.method != "transferKeepAlive" || !json.isSigned) {
       //   showLog("continue 1.1 of ", index);
       //   continue;
       // }
-      if (saveTxMethods.indexOf(json.method.method) == -1) {
+      if (
+        json.method?.method &&
+        saveTxMethods.indexOf(json.method.method) == -1
+      ) {
         // console.log("跳过：", json.method.method);
         continue;
       }
@@ -135,7 +139,7 @@ async function saveTx(blockHash, blockHeight, src, events) {
           entity.section == "balances"
         ) {
           entity.destAccount = json.method.args.dest.Id;
-          entity.amount = json.method.args.value.split(",").join("");
+          entity.amount = json.method.args.value;
         }
       }
       if (

@@ -21,14 +21,14 @@ var vm = new Vue({
         about: "Check the connect to mysql database status",
       },
       {
-        title: "Connect chain node RPC",
-        status: "waiting",
-        about: "Connect chain node RPC status",
-      },
-      {
         title: "Tables",
         status: "waiting",
         about: "Get table list",
+      },
+      {
+        title: "Connect chain node RPC",
+        status: "waiting",
+        about: "Connect chain node RPC status",
       },
     ],
     shellTxt: [],
@@ -79,7 +79,10 @@ var vm = new Vue({
         item.status = "loading";
         let tmp = await ws.send(item.title, item.about, item);
         console.log("replace", tmp);
-        item.status = "ok";
+        item.status = tmp.msg;
+        if (tmp.data) {
+          item.about = tmp.data;
+        }
       }
       that.loading = false;
     },
