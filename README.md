@@ -69,15 +69,7 @@ npm start ./mysql-config.json
 Open the page in browser: 
 
 ```
-http://localhost/system-status.html
-```
-
-### 1) Run API server
-
-```
-npm run start
-// or
-yarn run start
+http://localhost:8080/system-status.html
 ```
 
 

@@ -2,8 +2,8 @@
  * @Description:
  * @Autor: fage
  * @Date: 2022-07-12 15:39:39
- * @LastEditors: lanmeng656 cbf0311@sina.com
- * @LastEditTime: 2022-12-06 10:49:03
+ * @LastEditors: lanmeng656 lanmeng656@google.com
+ * @LastEditTime: 2022-12-06 16:57:55
  * @description: about
  * @author: chenbinfa
  */
@@ -124,8 +124,8 @@ async function saveTx(blockHash, blockHeight, src, events) {
         blockHeight,
         hash,
         isSigned: json.isSigned ? 1 : 0,
-        method: json.method.method,
-        section: json.method.section,
+        method: json.method?.method,
+        section: json.method?.section,
         // args: JSON.stringify(json.method.args),
         timestamp,
       };
@@ -148,6 +148,9 @@ async function saveTx(blockHash, blockHeight, src, events) {
         entity.method == "noteMinGasPriceTarget"
       ) {
         showLog("continue 2 of ", index);
+        continue;
+      }
+      if (!entity.method || !entity.section) {
         continue;
       }
       showLog("dalTransaction.insert ", index);
