@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-11 15:11:36
  * @LastEditors: lanmeng656 cbf0311@sina.com
- * @LastEditTime: 2022-12-05 17:34:34
+ * @LastEditTime: 2022-12-06 09:32:50
  */
 "use strict";
 const path = require("path");
@@ -22,14 +22,6 @@ module.exports = {
     secret: "MA14BAHJ2JEASL",
   },
   serverIP: "140.143.93.47",
-  mysql: {
-    connectionLimit: 10,
-    host: "192.168.14.10",
-    user: "substats-w3f",
-    password: "kZtRazdBsxy3d2zs",
-    port: 3306,
-    database: "substats-w3f",
-  },
   cookie: {
     enable: false,
     secret: "3**&2fMNU",

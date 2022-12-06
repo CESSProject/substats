@@ -3,10 +3,11 @@
  * @Autor: fage
  * @Date: 2022-07-12 15:39:39
  * @LastEditors: lanmeng656 cbf0311@sina.com
- * @LastEditTime: 2022-12-05 17:59:20
+ * @LastEditTime: 2022-12-06 10:49:03
  * @description: about
  * @author: chenbinfa
  */
+const init = require("../init");
 const { ApiPromise, WsProvider, Keyring } = require("@polkadot/api");
 const {
   BN,
@@ -17,14 +18,14 @@ const {
   extractTime,
 } = require("@polkadot/util");
 let api = null;
-let webconfig = require("../../webconfig");
-global.webconfig = webconfig;
+
 let util = require("../../util/common");
 const Dal = require("../../dal/dal-common");
 const dalBlock = new Dal("tb_block_info");
 const dalTransaction = new Dal("tb_block_transaction");
 const dalEvent = new Dal("tb_block_event");
-const init = require("../init");
+let wsHelper = require("../../bll/ws-helper");
+
 const moment = require("moment");
 var os = require("os");
 
@@ -44,7 +45,7 @@ async function getBlock(value) {
   const blockInfo = await api.rpc.chain.getBlock(hash);
   const blockHeight = blockInfo.block.header.number.toNumber();
   showLog("dalBlock.findWithQuery,blockHeight:", blockHeight);
-  sendLog("ok", "saving block " + blockHeight);
+  sendLog("log", "saving block " + blockHeight);
   const tmp = await dalBlock.findWithQuery({ blockHeight });
   if (tmp.length > 0) {
     return console.log("Item is exists");
@@ -56,7 +57,7 @@ async function getBlock(value) {
   showLog("saveBlock", timestamp);
   await saveBlock(hash, blockHeight, blockInfo, timestamp);
   console.log("block sync sccuess", blockHeight);
-  sendLog("ok", "save block sccuess " + blockHeight);
+  sendLog("log", "save block sccuess " + blockHeight);
 }
 async function saveBlock(hash, blockHeight, src, timestamp) {
   let blockInfo = src.toHuman();
@@ -273,17 +274,7 @@ function showLog(...msg) {
   // sendLog("ok", msg.join(" "));
 }
 function sendLog(msg, data) {
-  const clientList = global.wsClientList;
-  if (!clientList || clientList.length == 0) return;
-  let apiName = "sync block";
-  let json = JSON.stringify({ apiName, msg, data });
-  clientList.forEach((c) => {
-    try {
-      c.send(json);
-    } catch (e) {
-      console.log(e);
-    }
-  });
+  wsHelper.send("log", "append", data);
 }
 // main();
 module.exports = main;

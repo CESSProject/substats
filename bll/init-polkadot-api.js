@@ -2,11 +2,12 @@
  * @Description:
  * @Autor: fage
  * @Date: 2022-07-11 17:31:18
- * @LastEditors: chenbinfa
- * @LastEditTime: 2022-08-09 15:29:21
+ * @LastEditors: lanmeng656 cbf0311@sina.com
+ * @LastEditTime: 2022-12-06 10:31:13
  */
 const { ApiPromise, WsProvider, Keyring } = require("@polkadot/api");
 const webconfig = require("../webconfig");
+let wsHelper = require("./ws-helper");
 const config = webconfig.wsnode;
 let api, keyring;
 const provider = new WsProvider(config.nodeURL);
@@ -18,15 +19,18 @@ async function main() {
     if (waiting) {
       return;
     }
+    wsHelper.send("rpc", "connect", "loading");
     waiting = false;
     api = new ApiPromise({
       provider,
     });
     api.on("connected", () => {
       console.log("connect success ", config.nodeURL);
+      wsHelper.send("rpc", "connect", "ok");
     });
     api.on("disconnected", () => {
       console.log("ws disconnected", config.nodeURL);
+      wsHelper.send("rpc", "connect", "disconnected");
       if (waiting) {
         return;
       }
@@ -35,6 +39,7 @@ async function main() {
     });
     api.on("error", (error) => {
       console.log("error", error.message);
+      wsHelper.send("rpc", "connect", "error");
       if (waiting) {
         return;
       }
