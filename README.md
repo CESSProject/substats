@@ -87,3 +87,16 @@ http://localhost:8080/system-status.html
 └── web.config          # server config
 ```
 
+## 7. Build docker image
+* Docker Engine Version: 20.10+
+* The latest `cesslab/substats:latest` image has been pushed to docker hub
+```bash
+docker build -t cesslab/substats .
+```
+## 8. Run demo by docker compose
+* Docker Compose version v2.12+
+* Change work directory to project directory, then use cmd like bellow:
+```bash
+docker compose -f demo/docker-compose.yml up -d
+```
+* Open [this page](http://localhost:8080/system-status.html) in browser
