@@ -33,6 +33,11 @@
           <el-table-column prop="about" label="About">
           </el-table-column>
         </el-table>
+        <div style="padding-top:10px;">
+          <el-alert :closable="false" :title="'Chain RPC node connect status:'+rpcConnectStatus"
+            :type="rpcConnectStatus=='ok'?'success':rpcConnectStatus=='loading'?'info':'error'" effect="dark">
+          </el-alert>
+        </div>
       </div>
     </el-card>
 

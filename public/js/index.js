@@ -4,6 +4,7 @@ var vm = new Vue({
   data: {
     loading: false,
     blockHeight: 0,
+    rpcConnectStatus: "loading",
     systemStatus: [
       {
         title: "System startup",
@@ -25,11 +26,6 @@ var vm = new Vue({
         status: "waiting",
         about: "Get table list",
       },
-      {
-        title: "Connect chain node RPC",
-        status: "waiting",
-        about: "Connect chain node RPC status",
-      },
     ],
     shellTxt: [],
   },
@@ -38,11 +34,15 @@ var vm = new Vue({
     window.onload = function () {
       ws = new WS(
         function (json) {
-          if (json.apiName == "blockInfo") {
+          if (json.way == "block" && json.action == "new") {
             that.showMsgInBlackborad("new block：", json.data.blockHeight);
             that.blockHeight = json.data.blockHeight;
-          } else if (json.apiName == "sync block") {
+            that.rpcConnectStatus = "ok";
+          } else if (json.way == "log") {
             that.showMsgInBlackborad("synchronization block：", json.data);
+          } else if (json.way == "rpc") {
+            that.showMsgInBlackborad("chain rpc connect：", json.data);
+            that.rpcConnectStatus = json.data;
           }
         },
         function () {
@@ -54,6 +54,9 @@ var vm = new Vue({
   methods: {
     showMsgInBlackborad(k, v) {
       this.shellTxt.push({ k, v });
+      if (this.shellTxt.length > 50) {
+        this.shellTxt.shift();
+      }
       setTimeout(() => {
         var div = document.getElementById("blackborad");
         div.scrollTop = div.scrollHeight;

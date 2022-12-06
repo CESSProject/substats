@@ -2,17 +2,17 @@
  * @Description:
  * @Autor: fage
  * @Date: 2022-08-05 11:15:38
- * @LastEditors: chenbinfa
- * @LastEditTime: 2022-09-06 16:30:57
+ * @LastEditors: lanmeng656 cbf0311@sina.com
+ * @LastEditTime: 2022-12-06 10:01:45
  * @description: about
  * @author: chenbinfa
  */
-let webconfig = require("../../webconfig");
-global.webconfig = webconfig;
 const Dal = require("../../dal/dal-common");
-const dalBlock = new Dal("tb_block_info");
+const init = require("../init");
 
 async function main() {
+  init();
+  const dalBlock = new Dal("tb_block_info");
   const tables = [
     "tb_block_info",
     "tb_block_transaction",
@@ -31,4 +31,5 @@ async function main() {
   console.log("truncate complete!");
   process.exit();
 }
+
 main().then(() => {}, console.log);

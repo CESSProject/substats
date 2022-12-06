@@ -3,11 +3,12 @@
  * @Autor: fage
  * @Date: 2022-07-11 20:07:29
  * @LastEditors: lanmeng656 cbf0311@sina.com
- * @LastEditTime: 2022-12-05 15:45:22
+ * @LastEditTime: 2022-12-06 10:19:58
  * @description: about
  * @author: chenbinfa
  */
 let chainHelper = require("../util/chain-helper");
+let wsHelper = require("./ws-helper");
 async function main() {
   try {
     const api = global.dotApi;
@@ -21,7 +22,7 @@ async function main() {
         const blockHeight = header.number.toNumber();
         console.log("blockHeight", blockHeight);
         const blockInfo = await chainHelper.getBlockInfo(api, blockHeight);
-        send("blockInfo", "ok", blockInfo);
+        wsHelper.send("block", "new", blockInfo);
       } catch (e2) {
         console.log(e2);
       }
@@ -36,18 +37,4 @@ async function main() {
     console.log(e);
   }
 }
-function send(apiName, msg, data) {
-  const clientList = global.wsClientList;
-  if (!clientList || clientList.length == 0) return;
-  json = JSON.stringify({ apiName, msg, data });
-  clientList.forEach((c) => {
-    try {
-      c.send(json);
-      //   console.log(`sended data ${json}`);
-    } catch (e) {
-      console.log(e);
-    }
-  });
-}
-
 module.exports = main;

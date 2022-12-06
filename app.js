@@ -1,4 +1,14 @@
-"use strict";
+const webconfig = require("./webconfig");
+global.webconfig = webconfig;
+const initDatabaseConfig = require("./bll/init-database-config");
+const arguments = process.argv;
+let dbconfigFile = null;
+if (arguments.length > 2) {
+  console.log("arguments[2]", arguments[2]);
+  dbconfigFile = arguments[2];
+}
+initDatabaseConfig(dbconfigFile);
+
 const express = require("express");
 const compression = require("compression");
 const path = require("path");
@@ -11,10 +21,7 @@ const sessionHelper = require("./util/session-helper");
 const bodyParser = require("body-parser");
 const expressWs = require("express-ws");
 require("./util/add-functions");
-const webconfig = require("./webconfig");
 const myapp = require("./app/index");
-global.webconfig = webconfig;
-const port = webconfig.port.http || 80;
 
 const routes = require("./routes/index");
 const api = require("./routes/api");
@@ -22,6 +29,8 @@ const ws = require("./routes/ws");
 const initDotChain = require("./bll/init-polkadot-api");
 const sub = require("./bll/sub");
 const init = require("./bll/init");
+
+const port = webconfig.port.http || 80;
 
 const app = express();
 expressWs(app);

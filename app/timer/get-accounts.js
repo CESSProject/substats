@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-12 15:39:39
  * @LastEditors: lanmeng656 cbf0311@sina.com
- * @LastEditTime: 2022-12-05 09:14:01
+ * @LastEditTime: 2022-12-06 10:00:53
  * @description: auto record everyday power to db
  * @author: chenbinfa
  */
@@ -17,8 +17,6 @@ const {
   extractTime,
 } = require("@polkadot/util");
 let api = null;
-const webconfig = require("../../webconfig");
-global.webconfig = webconfig;
 const util = require("../../util/common");
 const Dal = require("../../dal/dal-common");
 const dal = new Dal("tb_block_account");

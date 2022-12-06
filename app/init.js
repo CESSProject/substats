@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-08-02 10:51:57
  * @LastEditors: lanmeng656 cbf0311@sina.com
- * @LastEditTime: 2022-12-05 11:03:21
+ * @LastEditTime: 2022-12-06 10:11:48
  * @description: about
  * @author: chenbinfa
  */
@@ -17,12 +17,20 @@ const {
   extractTime,
 } = require("@polkadot/util");
 let api = null;
-let webconfig = require("../webconfig");
 let common = require("../util/common");
+const initDatabaseConfig = require("../bll/init-database-config");
 let isLoading = false;
+let webconfigS = require("../webconfig");
 
 async function initAPI() {
-  global.webconfig = webconfig;
+  webconfig = global.webconfig;
+  if (!webconfig) {
+    webconfig = webconfigS;
+    global.webconfig = webconfig;
+  }
+  if (!webconfig.mysql) {
+    initDatabaseConfig();
+  }
   if (isLoading) {
     await common.sleep(500);
     return initAPI();

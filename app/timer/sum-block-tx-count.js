@@ -3,12 +3,10 @@
  * @Autor: fage
  * @Date: 2022-08-05 11:15:38
  * @LastEditors: lanmeng656 cbf0311@sina.com
- * @LastEditTime: 2022-12-05 09:14:29
+ * @LastEditTime: 2022-12-06 10:00:42
  * @description: about
  * @author: chenbinfa
  */
-let webconfig = require("../../webconfig");
-global.webconfig = webconfig;
 const Dal = require("../../dal/dal-common");
 const dalBlock = new Dal("tb_block_info");
 

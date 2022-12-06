@@ -59,9 +59,9 @@ yarn install
 ### 1) Run API server
 
 ```
-npm run start
-// or
-yarn run start
+npm start
+// or run whith custom database config file
+npm start ./mysql-config.json
 ```
 
 

@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-12 15:39:39
  * @LastEditors: lanmeng656 cbf0311@sina.com
- * @LastEditTime: 2022-12-05 09:14:11
+ * @LastEditTime: 2022-12-06 10:00:31
  * @description: about
  * @author: chenbinfa
  */
@@ -20,8 +20,6 @@ const {
 } = require("@polkadot/util");
 let api = null;
 const _ = require("lodash");
-let webconfig = require("../../webconfig");
-global.webconfig = webconfig;
 const Dal = require("../../dal/dal-common");
 const dal = new Dal("tb_miner");
 const dalSum = new Dal("tb_miner_summary");
