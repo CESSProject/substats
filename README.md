@@ -72,14 +72,6 @@ Open the page in browser:
 http://localhost/system-status.html
 ```
 
-### 1) Run API server
-
-```
-npm run start
-// or
-yarn run start
-```
-
 
 ## 6. Project file structure
 
