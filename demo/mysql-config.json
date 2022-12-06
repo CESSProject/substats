@@ -1,0 +1,8 @@
+{
+  "connectionLimit": 10,
+  "host": "substats_mysql",
+  "user": "root",
+  "password": "kZtRazdBsxy3d2zs",
+  "port": 3306,
+  "database": "substats-w3f"
+}
