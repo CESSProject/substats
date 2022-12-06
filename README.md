@@ -69,7 +69,7 @@ npm start ./mysql-config.json
 Open the page in browser: 
 
 ```
-http://localhost/system-status.html
+http://localhost:8080/system-status.html
 ```
 
 
