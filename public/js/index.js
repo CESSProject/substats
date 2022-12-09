@@ -17,7 +17,7 @@ var vm = new Vue({
         about: "Get listening port number",
       },
       {
-        title: "Connect to mysql",
+        title: "Connect to database",
         status: "waiting",
         about: "Check the connect to mysql database status",
       },

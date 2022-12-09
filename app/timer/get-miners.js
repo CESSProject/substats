@@ -21,8 +21,8 @@ const {
 let api = null;
 const _ = require("lodash");
 const Dal = require("../../dal/dal-common");
-const dal = new Dal("tb_miner");
-const dalSum = new Dal("tb_miner_summary");
+const dal = Dal("tb_miner");
+const dalSum = Dal("tb_miner_summary");
 const init = require("../init");
 
 async function getMiner() {

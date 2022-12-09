@@ -39,7 +39,7 @@ module.exports = async function (req, res, next) {
     data: [],
   };
   let tableName = req.body.tableName;
-  let dal = new Dal("tb_" + tableName);
+  let dal = Dal("tb_" + tableName);
   const valiResult = await checkTableName(dal, tableName);
   if (!valiResult) {
     return res.json({ msg: "table [" + tableName + "] not found" });

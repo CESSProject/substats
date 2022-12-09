@@ -2,8 +2,8 @@
  * @Description:
  * @Autor: fage
  * @Date: 2022-07-11 19:45:15
- * @LastEditors: lanmeng656 cbf0311@sina.com
- * @LastEditTime: 2022-12-05 17:55:33
+ * @LastEditors: lanmeng656 lanmeng656@google.com
+ * @LastEditTime: 2022-12-09 11:14:02
  * @description: about
  * @author: chenbinfa
  */
@@ -37,9 +37,9 @@ async function systemStatus(ws, json) {
   } else if (json.way == "Listening port") {
     json.msg = "ok";
     json.data = global.webconfig.port.http;
-  } else if (json.way == "Connect to mysql") {
+  } else if (json.way == "Connect to database") {
     try {
-      const dal = new Dal("tb_block_info");
+      const dal = Dal("tb_block_info");
       let list = await dal.findTop(null, 1);
       json.msg = list ? "ok" : "fail";
     } catch (e) {
@@ -61,10 +61,11 @@ async function systemStatus(ws, json) {
     }
   } else if (json.way == "Tables") {
     try {
-      const dal = new Dal("tb_block_info");
-      let list = await dal.getAllTableNames();
+      const dal = Dal("tb_block_info");
+      let list = await dal.getTableNames();
+      // let list=await dal.findTop(null,10);
       json.msg = list ? "ok" : "fail";
-      json.data = "tables:" + list.map((t) => t.table_name).join(",");
+      json.data ="tables:" + list.map((t) => t.table_name).join(",");
     } catch (e) {
       json.msg = "fail";
     }

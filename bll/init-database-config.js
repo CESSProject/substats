@@ -6,9 +6,8 @@ async function init(configFilePath) {
     global.webconfig = webconfig;
   }
   let config = mysqlConfigLoader(configFilePath);
-  if (!config) {
-    return console.error("database config load fail");
+  if (config) {
+    global.webconfig.mysql = config;
   }
-  global.webconfig.mysql = config;
 }
 module.exports = init;

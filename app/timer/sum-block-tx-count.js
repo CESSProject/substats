@@ -8,7 +8,7 @@
  * @author: chenbinfa
  */
 const Dal = require("../../dal/dal-common");
-const dalBlock = new Dal("tb_block_info");
+const dalBlock = Dal("tb_block_info");
 
 async function main() {
   let sql =

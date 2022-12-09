@@ -40,11 +40,6 @@ app.set("view engine", "ejs");
 app.use(compression()); //gzip
 app.use(cors());
 
-app.use("/*", function (req, res, next) {
-  console.log("req.body*************", req.body);
-  next();
-});
-
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 logger.token("time", function (req, res) {
@@ -101,7 +96,7 @@ global.wsClientList = [];
 initDotChain();
 sub();
 init();
-myapp();
+// myapp();
 
 app.listen(port);
 console.log("listening on ", port);

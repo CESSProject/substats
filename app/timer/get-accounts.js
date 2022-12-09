@@ -2,8 +2,8 @@
  * @Description:
  * @Autor: fage
  * @Date: 2022-07-12 15:39:39
- * @LastEditors: lanmeng656 cbf0311@sina.com
- * @LastEditTime: 2022-12-06 10:00:53
+ * @LastEditors: lanmeng656 lanmeng656@google.com
+ * @LastEditTime: 2022-12-09 11:08:17
  * @description: auto record everyday power to db
  * @author: chenbinfa
  */
@@ -19,7 +19,7 @@ const {
 let api = null;
 const util = require("../../util/common");
 const Dal = require("../../dal/dal-common");
-const dal = new Dal("tb_block_account");
+const dal = Dal("tb_block_account");
 const _ = require("lodash");
 const init = require("../init");
 const moment = require("moment");

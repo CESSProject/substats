@@ -12,7 +12,7 @@ const init = require("../init");
 
 async function main() {
   init();
-  const dalBlock = new Dal("tb_block_info");
+  const dalBlock = Dal("tb_block_info");
   const tables = [
     "tb_block_info",
     "tb_block_transaction",
