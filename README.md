@@ -21,23 +21,32 @@ We have designed a set of explorer modular components for the Substrate ecosyste
 - [testing-guide](./documents/testing-guide.md)
 
 
+
+
 ## 2. Technology stack used
 
-### 1) Node.js API
+### a. Node.js API
 
-- Server:Express
+- Web Server:Express
 - Database:Mysql/SQLite3
-- Polkadot
+- Polkadot.js
+
+### b. Tool Versions
+
+- node         v16.14+
+- npm          v9.2.0+
+- mysql        v5.7
+- docker       v2.12+
 
 ## 3. Install guide
 
 > Note : This system supports MySQL and sqlite3 databases. If npm start with a MySQL account config file, use MySQL else use sqlite3 database.
 
-### 1) Install database if use mysql
+### 1). Install database if use mysql
 - create a database with name "substats-w3f";
 - run the sql file [database-init](./documents/database-init.sql)
 - make database config file and content as:
-```
+```javascript
 {
   "connectionLimit": 10,
   "host": "127.0.0.1",
@@ -48,37 +57,45 @@ We have designed a set of explorer modular components for the Substrate ecosyste
 }
 ```
 
-### 2) Install API server
+### 2). Install API server
 
+```bash
+git clone https://github.com/CESSProject/substats.git
+cd substats
+npm install // or yarn
 ```
-npm install
-// or
-yarn install
-```
-## 4. Run guide
 
-### 1) Run API server
 
+## 4. Test guide
+
+```bash
+npm run test
 ```
+
+## 5. Run guide
+
+### 1). Run API server
+
+```bash
 npm start
 // or run whith custom database config file
 npm start ./mysql-config.json
 ```
 
+> It will listen on the port 8080
+
 > Note : If npm start with a MySQL account config file, use MySQL , else use the sqlite3 database.
 
 
-## 5. Inspect the system status
+## 6. Inspect the system status
 Open the page in browser: 
 
-```
-http://localhost:8080/system-status.html
-```
+[http://localhost:8080/system-status.html]([http://localhost:8080/system-status.html])
 
 
-## 6. Project file structure
+## 7. Project file structure
 
-```
+```bash
 ├── app/                #  timer app
 ├── package.json        #  package
 ├── bll/                # business
@@ -89,16 +106,24 @@ http://localhost:8080/system-status.html
 ├── app.js              # server main
 └── web.config          # server config
 ```
+## 8. Docker guide
 
-## 7. Build docker image
+You can build docker image and then run it or run image by docker compose directly.
+
+#### 1. Build docker image
 * Docker Engine Version: 20.10+
 * The latest `cesslab/substats:latest` image has been pushed to docker hub
 ```bash
+git clone https://github.com/CESSProject/substats.git
+cd substats
 docker build -t cesslab/substats .
 ```
-## 8. Run demo by docker compose
+#### 2. Run demo by docker compose
 * Docker Compose version v2.12+
 * Change work directory to project directory, then use cmd like bellow:
+
+> It will listen on the port 8080
+
 ```bash
 docker compose -f demo/docker-compose.yml up -d
 ```

@@ -27,7 +27,9 @@ var vm = new Vue({
         about: "Get table list",
       },
     ],
-    shellTxt: [],
+    shellTxt: [{
+      k:"status：",v:"start"
+    }],
   },
   mounted() {
     const that = this;
