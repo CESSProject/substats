@@ -26,12 +26,14 @@ We have designed a set of explorer modular components for the Substrate ecosyste
 ### 1) Node.js API
 
 - Server:Express
-- Database:Mysql
+- Database:Mysql/SQLite3
 - Polkadot
 
 ## 3. Install guide
 
-### 1) Install database
+> Note : This system supports MySQL and sqlite3 databases. If npm start with a MySQL account config file, use MySQL else use sqlite3 database.
+
+### 1) Install database if use mysql
 - create a database with name "substats-w3f";
 - run the sql file [database-init](./documents/database-init.sql)
 - make database config file and content as:
@@ -45,7 +47,6 @@ We have designed a set of explorer modular components for the Substrate ecosyste
   "database": "substats"
 }
 ```
-- edit the config file of "/webconfig.js" and change config path at the line 25
 
 ### 2) Install API server
 
@@ -63,6 +64,8 @@ npm start
 // or run whith custom database config file
 npm start ./mysql-config.json
 ```
+
+> Note : If npm start with a MySQL account config file, use MySQL , else use the sqlite3 database.
 
 
 ## 5. Inspect the system status

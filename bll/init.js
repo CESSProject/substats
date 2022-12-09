@@ -2,18 +2,24 @@
  * @Description:
  * @Autor: fage
  * @Date: 2022-07-11 20:07:29
- * @LastEditors: chenbinfa
- * @LastEditTime: 2022-07-21 16:21:18
+ * @LastEditors: lanmeng656 lanmeng656@google.com
+ * @LastEditTime: 2022-12-09 14:57:59
  * @description: about
  * @author: chenbinfa
  */
 const Dal = require("../dal/dal-common");
-const dalDicCat = new Dal("tb_dictionary_category");
-const dalDic = new Dal("tb_dictionary");
+const dalDicCat = Dal("tb_dictionary_category");
+const dalDic = Dal("tb_dictionary");
 
-async function main() {
+async function main() {  
   const cat = await dalDicCat.findAll();
+  // console.log('init cat',cat);
   const dic = await dalDic.findAll();
+  // console.log('init dic',dic);
+
+  // console.log('init dalDicCat.tabelName',dalDicCat.tableName);
+  // console.log('init dalDic.tabelName',dalDic.tableName);
+
   const list = cat.map((t) => {
     return {
       id: t.id,

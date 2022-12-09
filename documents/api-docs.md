@@ -16,7 +16,7 @@ POST /api/dics/list
 // no params
 ```
 
-### Response JSON
+### Response JSON format as:
 
 ```
 {
@@ -65,40 +65,27 @@ POST /api/storage/query
 
 ```
 {
-    "ac1": "fileBank",
-    "ac2": "purchasedPackage"
+    "ac1": "timestamp",
+    "ac2": "now"
 }
 ```
+or 
 
-ac1 and ac2 enable values
-
-
-| ac1       | ac2              |
-|-----------|------------------|
-| fileBank  | purchasedPackage |
-| timestamp | now              |
-| fileBank  | fileIndexCount   |
-| fileBank  | unitPrice        |
-| fileBank  | members          |
+```
+{
+    "ac1": "system",
+    "ac2": "eventCount"
+}
+```
+or other chain api
 
 
-
-### Response JSON
+### Response JSON as 
 
 ```
 {
     "msg": "ok",
-    "data": [
-        {
-            "tenancy": 1,
-            "packageType": 3,
-            "start": 234280,
-            "deadline": 1098280,
-            "state": "0x6e6f726d616c",
-            "key": "cXiqEEbT38JCMRfX5NCm84WGF3M3Soxc3hVkJdDPuZGwXq8qe"
-        },
-        ......
-    ]
+    "data":29
 }
 ```
 
@@ -128,19 +115,18 @@ POST /api/chainStateConsts/consts
 }
 ```
 
-ac1 and ac2 enable values
-
+other ac1 and ac2 enable values as:
 
 | ac1                | ac2                      |
 |--------------------|--------------------------|
 | system             | blockWeights             |
-| timestamp          | miniumPeriod             |
 | transactionPayment | operationalFeeMultiplier |
-| sminer             | itemLimit                |
+
+or other chain api
 
 
 
-### Response JSON
+### Response JSON as:
 
 ```
 {
@@ -192,7 +178,7 @@ POST /api/dbcommon/list
 
 ```
 {
-  "tableName": "miner_summary",
+  "tableName": "block_info",
   "pageindex": 1,
   "pagesize": 10
 }
@@ -208,10 +194,9 @@ The param tableName value as :
 - dictionary_category
 - miner
 - miner_summary
-- storage_power_trend
 
 
-### Response JSON
+### Response JSON as :
 
 ```
 {
@@ -252,11 +237,12 @@ POST /api/dbcommon/detail
 
 ```
 {
-  "tableName": "miner_summary",
-  "pageindex": 1,
-  "pagesize": 10
+  "tableName": "block_info",
+  "id": 1
 }
 ```
+
+The id is item id number.
 
 The param tableName value as :
 
@@ -277,10 +263,13 @@ The param tableName value as :
     "msg": "ok",
     "data": {
         "id": 1,
-        "collateralAccounts": "cXf5twq4D6TmZ78nQkLymW5NJUF7awiAseXHsY6HJD7aY32Bm",
-        "collateralAccountCount": 1,
-        "beneficiaryAccount": "cXiD1Rz3XFPH4tDGMmMCScXR7a89iCEr4NDp5Kjyq2hRYN5g7",
-        "collaterals": 2305843009213694000,
+        "hash": "0xc0096358534ec8d21d01d34b836eed476a1c343f8724fa2153dc0725ad797a90",
+        "signerAccount": null,
+        "parentHash": "0x91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3",
+        "blockHeight": 1,
+        "txCount": null,
+        "eventCount": null,
+        "timestamp": 1590507378000
     }
 }
 ```

@@ -21,9 +21,9 @@ let api = null;
 
 let util = require("../../util/common");
 const Dal = require("../../dal/dal-common");
-const dalBlock = new Dal("tb_block_info");
-const dalTransaction = new Dal("tb_block_transaction");
-const dalEvent = new Dal("tb_block_event");
+const dalBlock = Dal("tb_block_info");
+const dalTransaction = Dal("tb_block_transaction");
+const dalEvent = Dal("tb_block_event");
 let wsHelper = require("../../bll/ws-helper");
 
 const moment = require("moment");

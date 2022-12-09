@@ -33,6 +33,7 @@ Technology stack:
 - Node.js
 - Polkadot.js
 - Mysql
+- SQLITE3
 - ORM
 
 ### Back-end API service

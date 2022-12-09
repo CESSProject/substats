@@ -4,7 +4,7 @@ The database is used to store on-chain data, including block details, transactio
 
 ##  Import instruction
 
-Use the Mysql tool to link your database engine, then run the [database-init.sql](database-init.sql) file in the local directory to import a complete database
+Use the Mysql(or SQLITE3) tool to link your database engine, then run the [database-init.sql](database-init.sql) file in the local directory to import a complete database
 
 > Note: The recommended database engine version is mysql-v5.7
 
