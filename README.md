@@ -51,7 +51,7 @@ We have designed a set of explorer modular components for the Substrate ecosyste
   "connectionLimit": 10,
   "host": "127.0.0.1",
   "user": "substats",
-  "password": "Ni6eY85EXM6ZrMLG",
+  "password": "Ni6eY85EXM6ZrMLG@",
   "port": 3306,
   "database": "substats"
 }
