@@ -180,6 +180,12 @@ CREATE TABLE IF NOT EXISTS `tb_power_trend` (
   UNIQUE KEY `dateStr` (`dateStr`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='power';
 
+-- init dictionary data
+INSERT INTO tb_dictionary_category(`name`) VALUES ('status');
+INSERT INTO tb_dictionary (`category_id`, `sort_id`, `value`, `label`, `about`, `color`) VALUES (1, 1, 1, 'pending', 'status is pending', 'red');
+INSERT INTO tb_dictionary (`category_id`, `sort_id`, `value`, `label`, `about`, `color`) VALUES (1, 2, 2, 'completed', 'status is completed', 'green');
+
+
 
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
