@@ -3,7 +3,7 @@ function send(way, action, data) {
   if (!clientList || clientList.length == 0) {
     return;
   }
-  json = JSON.stringify({ way, action, data });
+  let json = JSON.stringify({ way, action, data });
   clientList.forEach((c) => {
     try {
       c.send(json);
