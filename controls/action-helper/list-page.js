@@ -14,7 +14,7 @@ async function list(fieldStr, fromStr, dal, req, res) {
     const pre = req.body.pre || "a.";
     const { whereStr, sortStr, dangerous } = formatParams(pre, req);
 
-    console.log("whereStr", whereStr);
+    // console.log("whereStr", whereStr);
 
     if (req.body.groupby) {
       sortStr = " GROUP BY " + req.body.groupby + " " + sortStr;

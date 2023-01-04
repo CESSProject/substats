@@ -6,8 +6,6 @@ test("test the get column function", async () => {
   };
   let res = {
     json: (result) => {
-      console.log("**********************************");
-      console.log(result);
       expect(result.data[0]).toBe("test");
     },
   };

@@ -2,8 +2,8 @@
  * @Description:
  * @Autor: fage
  * @Date: 2022-07-11 15:11:36
- * @LastEditors: chenbinfa
- * @LastEditTime: 2022-07-20 15:55:12
+ * @LastEditors: lanmeng656 lanmeng656@google.com
+ * @LastEditTime: 2023-01-04 09:32:50
  */
 module.exports = async function (ret, dal, req, res) {
   try {
@@ -19,13 +19,10 @@ module.exports = async function (ret, dal, req, res) {
         entity[k] = req.body[k];
       }
     });
-    // console.log('****************entity**********************');
-    // console.log(entity);
     ret = await dal.insert(entity);
   } catch (e) {
     ret.msg = "error";
     ret.err = e;
-    let msg = "创建记录失败。";
   }
   if ((typeof req.cb).toLocaleLowerCase() == "function") {
     req.cb(ret.id);

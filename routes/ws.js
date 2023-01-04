@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-11 19:45:15
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2022-12-09 11:14:02
+ * @LastEditTime: 2023-01-04 10:16:36
  * @description: about
  * @author: chenbinfa
  */
@@ -71,7 +71,6 @@ async function systemStatus(ws, json) {
     }
   }
   ws.send(JSON.stringify(json));
-  // ws.send("ffffffffffffff");
 }
 
 module.exports = main;

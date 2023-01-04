@@ -2,14 +2,10 @@
  * @Description:
  * @Autor: fage
  * @Date: 2022-07-11 15:11:36
- * @LastEditors: lanmeng656 cbf0311@sina.com
- * @LastEditTime: 2022-11-01 17:55:56
+ * @LastEditors: lanmeng656 lanmeng656@google.com
+ * @LastEditTime: 2023-01-04 10:16:22
  */
 "use strict";
-
-/*
- * API公共接口
- */
 
 const express = require("express");
 const publicAPI = require("../controls/public/index");

@@ -1,6 +1,3 @@
-/**
- * 公共函数库
- */
 "use strict";
 const fs = require("fs");
 const path = require("path");
@@ -8,21 +5,14 @@ const util = require('util');
 const moment = require('moment');
 
 module.exports = {
-    idNumberToAge:idNumberToAge,
     getYYYYMMDD: getYYYYMMDD,
     getDateDir: getDateDir,
-    processResult: processResult,
     log: log,
     err: err,
     timestr: timestr,
-    mkdirsSync: mkdirsSync,
-    checkInArr: checkInArr,
     getExtname: getExtname,
-    bigFileCopy: bigFileCopy,
     subtext: sub,
     subtextArr: subs,
-    queryInt: queryInt,
-    paramsInt: paramsInt,
     include: include,
     readTemplate: readTemplate,
     relaceAll: relaceAll,
@@ -39,18 +29,6 @@ module.exports = {
     createTimestamp:createTimestamp,
     raw:raw
 };
-//身份证号码转年龄
-function idNumberToAge(idNumber) {
-    if(!idNumber||idNumber.length<15){
-        return 0;
-    }
-    let birthday=idNumber.toString().substr(6,4);
-    if(isNaN(birthday)){
-        return 0;
-    }
-    let age=new Date().getFullYear()-parseInt(birthday);
-    return age;
-}
 function getYYYYMMDD(dateTime) {
     let myDate;
     if (!dateTime) {
@@ -73,13 +51,13 @@ function getDateDir(myDate) {
 function timestr(fmt, time) {
     var now = time ? new Date(time) : new Date();
     var o = {
-        "M+": now.getMonth() + 1,                 //月份
-        "d+": now.getDate(),                    //日
-        "h+": now.getHours(),                   //小时
-        "m+": now.getMinutes(),                 //分
-        "s+": now.getSeconds(),                 //秒
-        "q+": Math.floor((now.getMonth() + 3) / 3), //季度
-        "S": now.getMilliseconds()             //毫秒
+        "M+": now.getMonth() + 1,                
+        "d+": now.getDate(),                    
+        "h+": now.getHours(),                  
+        "m+": now.getMinutes(),                
+        "s+": now.getSeconds(),                 
+        "q+": Math.floor((now.getMonth() + 3) / 3), 
+        "S": now.getMilliseconds()            
     };
     if (/(y+)/.test(fmt))
         fmt = fmt.replace(RegExp.$1, (now.getFullYear() + "").substr(4 - RegExp.$1.length));
@@ -87,24 +65,6 @@ function timestr(fmt, time) {
         if (new RegExp("(" + k + ")").test(fmt))
             fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
-}
-
-function mkdirsSync(dirname, mode) {
-    if (fs.existsSync(dirname)) {
-        return true;
-    } else {
-        if (mkdirsSync(path.dirname(dirname), mode)) {
-            fs.mkdirSync(dirname, mode);
-            return true;
-        }
-    }
-}
-
-function checkInArr(arr, v) {
-    if (arr.length == 0) {
-        return true;
-    }
-    return arr.indexOf(v) != -1;
 }
 
 function getExtname(url, defaultExtname) {
@@ -141,15 +101,6 @@ function getExtname(url, defaultExtname) {
     return extname;
 }
 
-function processResult(error, result) {
-    if (error) {
-        console.log("error :" + error);
-    }
-    else if (result) {
-        console.log(result);
-    }
-}
-
 function log(arg) {
     let len = arguments.length;
     if (len == 1) {
@@ -178,25 +129,6 @@ function err(arg) {
     }
 }
 
-//大文件复制
-function bigFileCopy(sourcePath, destPath) {
-    let readStream = fs.createReadStream(sourcePath);
-    let writeStream = fs.createWriteStream(destPath);
-
-    readStream.on('data', function (chunk) { // 当有数据流出时，写入数据
-        if (writeStream.write(chunk) === false) { // 如果没有写完，暂停读取流
-            readStream.pause();
-        }
-    });
-
-    writeStream.on('drain', function () { // 写完后，继续读取
-        readStream.resume();
-    });
-
-    readStream.on('end', function () { // 当没有数据时，关闭数据流
-        writeStream.end();
-    });
-}
 
 function sub(str, start, end) {
     let s = str.indexOf(start);
@@ -220,31 +152,6 @@ function subs(str, start, end) {
     return retArr;
 }
 
-function queryInt(req, name, default_value) {
-    if (req.query && req.query[name]) {
-        try {
-            if (req.query[name].match(/^\d+$/))
-                return parseInt(req.query[name]);
-        }
-        catch (e) {
-            console.log(e);
-        }
-    }
-    return default_value;
-}
-
-function paramsInt(req, name, default_value) {
-    if (req.params && req.params[name]) {
-        try {
-            if (req.params[name].match(/^\d+$/))
-                return parseInt(req.params[name]);
-        }
-        catch (e) {
-            console.log(e);
-        }
-    }
-    return default_value;
-}
 
 function include(relativeDir, pageHtml) {
     let arr = subs(pageHtml, '<include>', '</include>');
@@ -274,7 +181,6 @@ function relaceAll(sourStr, oldStr, newStr) {
 
 
 function url_encode(url) {
-    //把地址中的中文转义
     url = encodeURIComponent(url);
     url = url.replace(/\%3A/g, ":");
     url = url.replace(/\%2F/g, "/");
@@ -340,18 +246,13 @@ function superTrim(obj) {
 function sleep(minisec,showLog) {
     return new Promise((resolve, reject) => {
         if(showLog){
-            console.log(moment().format('YYYY-MM-DD HH:mm'), '暂停' + (minisec / 1000).toString() + '秒.');
+            console.log(moment().format('YYYY-MM-DD HH:mm'), 'pause ' + (minisec / 1000).toString() + 's.');
         }
         setTimeout(function () {
             resolve();
         }, minisec);
     });
 }
-/**
- * 对象克隆
- * 支持基本数据类型及对象
- * 递归方法
- */
 function clone(obj) {
     var o;
     switch (typeof obj) {
@@ -366,7 +267,7 @@ function clone(obj) {
         case "boolean":
             o = obj;
             break;
-        case "object": // object 分为两种情况 对象（Object）或数组（Array）
+        case "object":
             if (obj === null) {
                 o = null;
             } else {
@@ -411,9 +312,7 @@ function isEmpty(value) {
     }
     return result;
 }
-//不四舍五入取两位小数
 function getMoneyFloat(v){
-    // return Math.floor(parseFloat(v) * 100) / 100;
     return parseInt(v*100)/100;
 }
 function createTimestamp() {

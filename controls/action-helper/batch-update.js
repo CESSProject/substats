@@ -2,8 +2,8 @@
  * @Description:
  * @Autor: fage
  * @Date: 2022-07-11 15:11:36
- * @LastEditors: lanmeng656 cbf0311@sina.com
- * @LastEditTime: 2022-10-11 17:20:49
+ * @LastEditors: lanmeng656 lanmeng656@google.com
+ * @LastEditTime: 2023-01-04 10:09:07
  */
 module.exports = async function (ret, dal, req, res) {
   try {
@@ -26,7 +26,7 @@ module.exports = async function (ret, dal, req, res) {
       dal.columns = await dal.findColumnName();
     }
     if (!dal.columns || dal.columns.length == 0) {
-      ret.msg = "获取列失败";
+      ret.msg = "get columns fail";
       res.json(ret);
       return;
     }
@@ -46,7 +46,7 @@ module.exports = async function (ret, dal, req, res) {
       }
     });
     if (!hasColumn) {
-      ret.msg = "没有需要更改的列";
+      ret.msg = "no change row";
     } else {
       delete entity.id;
       let sql = "update ?? set ? where id in(" + ids + ")";
