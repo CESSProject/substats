@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-12 15:39:39
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-01-05 14:12:12
+ * @LastEditTime: 2023-01-05 14:29:13
  * @description: about
  * @author: chenbinfa
  */
@@ -340,9 +340,3 @@ function sendLog(msg, data) {
 }
 // main();
 module.exports = main;
-
-// async function a(){
-//   api = await init();
-//   getBlock(13652287);
-// }
-// a();

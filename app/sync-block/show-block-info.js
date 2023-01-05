@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-12 15:39:39
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-01-05 13:45:14
+ * @LastEditTime: 2023-01-05 14:29:21
  * @description: about
  * @author: chenbinfa
  */
@@ -53,7 +53,6 @@ async function getBlock(value) {
     let hash = enx.hash.toHex();
     // console.log(json);
     console.log("hash",hash);
-    console.log("========================================");
   }
 }
 async function main() {
