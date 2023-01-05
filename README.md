@@ -33,10 +33,11 @@ We have designed a set of explorer modular components for the Substrate ecosyste
 
 ### b. Tool Versions
 
-- node         v16.14+
-- npm          v9.2.0+
-- mysql        v5.7
-- docker       v20.10+
+- node             v16.14+
+- npm              v9.2.0+
+- mysql            v5.7
+- docker engine    v20.10+
+- docker compose   v2.12+
 
 ## 3. Install guide
 
