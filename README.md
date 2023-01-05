@@ -77,9 +77,10 @@ npm run test
 ### 1). Run API server
 
 ```bash
-npm start
+npm start  //will use the sqlite3 database.
+
 // or run whith custom database config file
-npm start ./mysql-config.json
+npm start ./mysql-config.json    //will use the mysql database.
 ```
 
 > It will listen on the port 8080
