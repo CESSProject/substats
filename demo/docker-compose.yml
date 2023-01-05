@@ -5,41 +5,15 @@ networks:
     driver:
       bridge
 
-volumes:
-  substats_mysql_db:
-    driver: local
-  substats_mysql_cnf:
-    driver: local
-
 services:
-  mysql:
-    image: mysql:5.7
-    container_name: substats_mysql
-    networks:
-      - substats_network
-    expose:
-      - 3306
-    volumes:
-      - substats_mysql_db:/var/lib/mysql
-      - substats_mysql_cnf:/etc/mysql/conf.d
-      - ../documents/database-init.sql:/docker-entrypoint-initdb.d/init.sql
-    environment:
-      MYSQL_ROOT_PASSWORD: kZtRazdBsxy3d2zs
-      TZ: Asia/Shanghai
-    privileged: true
-    command: ["mysqld", "--default-authentication-plugin=mysql_native_password"]
-
+ 
   substats:
     image: cesslab/substats:latest
     container_name: substats
-    volumes:
-      - ./mysql-config.json:/substats/config/mysql-config.json
     networks:
       - substats_network
-    command: ["npm", "start", "/substats/config/mysql-config.json"]
+    command: ["npm", "start"]
     restart: on-failure
-    depends_on:
-      - mysql
     ports:
       - 8080:8080
     expose:

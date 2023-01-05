@@ -112,6 +112,8 @@ Open the page in browser:
 
 You can build docker image and then run it or run image by docker compose directly.
 
+> To simplify the docker running environment, we use the sqlite database in docker.
+
 #### 1. Build docker image
 * Docker Engine Version: 20.10+
 * The latest `cesslab/substats:latest` image has been pushed to docker hub
