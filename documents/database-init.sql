@@ -181,7 +181,7 @@ CREATE TABLE IF NOT EXISTS `tb_power_trend` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='power';
 
 -- init dictionary data
-INSERT INTO tb_dictionary_category(`name`) VALUES ('status');
+INSERT INTO tb_dictionary_category(`id`,`name`) VALUES (1,'status');
 INSERT INTO tb_dictionary (`category_id`, `sort_id`, `value`, `label`, `about`, `color`) VALUES (1, 1, 1, 'pending', 'status is pending', 'red');
 INSERT INTO tb_dictionary (`category_id`, `sort_id`, `value`, `label`, `about`, `color`) VALUES (1, 2, 2, 'completed', 'status is completed', 'green');
 
