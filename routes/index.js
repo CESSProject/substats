@@ -2,14 +2,11 @@
  * @Description: 
  * @Autor: fage
  * @Date: 2022-07-11 15:11:36
- * @LastEditors: fage
- * @LastEditTime: 2022-07-11 17:14:25
+ * @LastEditors: lanmeng656 lanmeng656@google.com
+ * @LastEditTime: 2023-01-04 10:16:27
  */
 "use strict";
 
-/*
- * 前台页面
- */
 
 const express = require('express');
 let router = express.Router();

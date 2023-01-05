@@ -2,8 +2,8 @@
  * @Description:
  * @Autor: fage
  * @Date: 2022-07-11 15:11:36
- * @LastEditors: lanmeng656 cbf0311@sina.com
- * @LastEditTime: 2022-11-01 17:55:03
+ * @LastEditors: lanmeng656 lanmeng656@google.com
+ * @LastEditTime: 2023-01-04 11:23:48
  * @description: about
  * @author: chenbinfa
  */
@@ -11,9 +11,9 @@
 let paramHelper = require("../param-helper");
 let crypto = require("../../util/crypto");
 /*
- * 公开接口（无须登录即可调用）
+ * public api
  */
-let secret = global.webconfig.publicApi.secret;
+let secret = global.webconfig?.publicApi?.secret||'test';
 
 let obj = {
   chainStateConsts: {
@@ -48,7 +48,7 @@ module.exports = async function (req, res, next) {
     let o = obj[way];
     if (!o) {
       res.json({
-        result: "way未定义:" + way,
+        result: "way not found:" + way,
         msg: "fail",
       });
       return false;
@@ -57,7 +57,7 @@ module.exports = async function (req, res, next) {
       let temp = o.actions.indexOf(action);
       if (temp == -1) {
         res.json({
-          result: "action是不被允许:" + action,
+          result: "action not fouond:" + action,
           msg: "noAuthority",
         });
         return false;

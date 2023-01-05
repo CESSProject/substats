@@ -16,8 +16,6 @@ const favicon = require("serve-favicon");
 const logger = require("morgan");
 const moment = require("moment");
 const cors = require("cors");
-const cookieParser = require("cookie-parser");
-const sessionHelper = require("./util/session-helper");
 const bodyParser = require("body-parser");
 const expressWs = require("express-ws");
 require("./util/add-functions");
@@ -61,8 +59,6 @@ app.use(
 );
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false, limit: "10000kb" }));
-app.use(cookieParser());
-app.use(sessionHelper());
 app.use(express.static(path.join(__dirname, "ui/build")));
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -96,7 +92,7 @@ global.wsClientList = [];
 initDotChain();
 sub();
 init();
-// myapp();
+myapp();
 
 app.listen(port);
 console.log("listening on ", port);

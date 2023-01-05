@@ -1,7 +1,3 @@
-/**
- * 增加对象的方法
- */
-//数组去重
 Array.prototype.unique = function () {
     var res = [this[0]];
     for (var i = 1; i < this.length; i++) {
@@ -18,7 +14,6 @@ Array.prototype.unique = function () {
     }
     return res;
 }
-//数据随机排序
 Array.prototype.randSort = function (s1, s2) {
     return this.sort(() => Math.random() - 0.5);
 }

@@ -2,8 +2,8 @@
  * @Description:
  * @Autor: fage
  * @Date: 2022-08-05 14:06:57
- * @LastEditors: chenbinfa
- * @LastEditTime: 2022-08-17 14:06:02
+ * @LastEditors: lanmeng656 lanmeng656@google.com
+ * @LastEditTime: 2023-01-04 14:26:16
  * @description: about
  * @author: chenbinfa
  */
@@ -43,7 +43,7 @@ async function getBlockInfo(api, blockHeight) {
 
 async function getTx(blockHeight, src) {
   //   let blockInfo = src.toHuman();
-  blockInfo = src.block;
+  let blockInfo = src.block;
   let trnactions = [];
   let timestamp = 0;
   let timestampTx = blockInfo.extrinsics.find(

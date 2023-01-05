@@ -2,10 +2,9 @@
  * @Description:
  * @Autor: fage
  * @Date: 2022-07-11 17:32:07
- * @LastEditors: Jack Chen
- * @LastEditTime: 2022-07-11 20:35:33
+ * @LastEditors: lanmeng656 lanmeng656@google.com
+ * @LastEditTime: 2023-01-04 10:11:09
  * @description: about
- * @author: Jack Chen @懒人码农
  */
 const { Keyring } = require("@polkadot/api");
 

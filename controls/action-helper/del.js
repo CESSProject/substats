@@ -2,8 +2,8 @@
  * @Description: 
  * @Autor: fage
  * @Date: 2022-07-11 15:11:36
- * @LastEditors: fage
- * @LastEditTime: 2022-07-11 17:21:27
+ * @LastEditors: lanmeng656 lanmeng656@google.com
+ * @LastEditTime: 2023-01-04 10:09:31
  */
 "use strict";
 
@@ -39,11 +39,6 @@ module.exports = async function (ret, dal, req, res) {
         }
         ret.data = await dal.removeById(id);
         ret.msg = 'ok';
-        // if(req.body.user_id){
-        //     bllOutside.create(req,req.body.user_id,'user',2,'删除记录成功。way:'+req.body.way+',id:'+id);
-        // }else if(req.body.admin_id){
-        //     bllOutside.create(req,req.body.admin_id,'admin',2,'删除记录成功。way:'+req.body.way+',id:'+id);
-        // }
     } catch (e) {
         ret.msg = 'error';
         ret.err = e;

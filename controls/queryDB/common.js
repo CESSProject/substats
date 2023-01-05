@@ -2,8 +2,8 @@
  * @Description:
  * @Autor: fage
  * @Date: 2022-07-11 15:11:35
- * @LastEditors: lanmeng656 cbf0311@sina.com
- * @LastEditTime: 2022-10-13 15:50:38
+ * @LastEditors: lanmeng656 lanmeng656@google.com
+ * @LastEditTime: 2023-01-04 10:23:11
  * @description: about
  * @author: chenbinfa
  */
@@ -15,7 +15,6 @@ const column = require("../action-helper/column");
 const del = require("../action-helper/del");
 const create = require("../action-helper/create");
 const update = require("../action-helper/update");
-const exportHelper = require("../action-helper/export");
 const batchUpdate = require("../action-helper/batch-update");
 const copy = require("../action-helper/copy");
 let tables = null;
@@ -30,7 +29,6 @@ module.exports = async function (req, res, next) {
     detail: detail,
     batch_update: batchUpdate,
     copy: copy,
-    export: exportHelper,
     get_table_names: getTableNames,
     get_colum_names: getColumNames,
   };
