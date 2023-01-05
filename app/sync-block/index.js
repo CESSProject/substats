@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-12 15:39:39
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2022-12-06 16:57:55
+ * @LastEditTime: 2023-01-05 14:12:12
  * @description: about
  * @author: chenbinfa
  */
@@ -29,9 +29,12 @@ let wsHelper = require("../../bll/ws-helper");
 const moment = require("moment");
 var os = require("os");
 
-const saveTxMethods = ["faucet", "transferKeepAlive"];
-
 async function getBlock(value) {
+  showLog(
+    "========================start block " +
+      value +
+      "================================"
+  );
   let hash = "";
   if (typeof value != "number") {
     hash = value;
@@ -53,13 +56,30 @@ async function getBlock(value) {
   showLog("api.query.system.events.at", hash);
   const events = await api.query.system.events.at(hash);
   showLog("saveTx", blockHeight);
-  const timestamp = await saveTx(hash, blockHeight, blockInfo, events);
+  const { timestamp, txCount, eventCount } = await saveTx(
+    hash,
+    blockHeight,
+    blockInfo,
+    events
+  );
   showLog("saveBlock", timestamp);
-  await saveBlock(hash, blockHeight, blockInfo, timestamp);
+  await saveBlock(hash, blockHeight, blockInfo, timestamp, txCount, eventCount);
   console.log("block sync sccuess", blockHeight);
   sendLog("log", "save block sccuess " + blockHeight);
+  showLog(
+    "========================end block " +
+      blockHeight +
+      "================================"
+  );
 }
-async function saveBlock(hash, blockHeight, src, timestamp) {
+async function saveBlock(
+  hash,
+  blockHeight,
+  src,
+  timestamp,
+  txCount,
+  eventCount
+) {
   let blockInfo = src.toHuman();
   blockInfo = blockInfo.block;
   // console.log("blockInfo", blockInfo);
@@ -71,6 +91,8 @@ async function saveBlock(hash, blockHeight, src, timestamp) {
     // signerAccount,
     parentHash: blockInfo.header.parentHash,
     blockHeight,
+    txCount,
+    eventCount,
     // stateRoot: blockInfo.header.stateRoot,
     // extrinsicsRoot: blockInfo.header.extrinsicsRoot,
     timestamp,
@@ -83,6 +105,8 @@ async function saveTx(blockHash, blockHeight, src, events) {
   blockInfo = src.block;
   let trnactions = [];
   let timestamp = 0;
+  let txCount = 0;
+  let eventCountAll = 0;
   let timestampTx = blockInfo.extrinsics.find(
     (t) => t.method.section == "timestamp" && t.method.method == "set"
   );
@@ -94,32 +118,26 @@ async function saveTx(blockHash, blockHeight, src, events) {
     // console.log("timestamp:", timestamp);
   } else {
     showLog("timestampTx not found");
-    return timestamp;
+    return { timestamp, txCount, eventCount: eventCountAll };
   }
   showLog("saving blockInfo.extrinsics");
-  for (let index in blockInfo.extrinsics) {
-    showLog("saving blockInfo.extrinsics of", index);
-    let enx = blockInfo.extrinsics[index];
+
+  let index = 0;
+  for (enx of blockInfo.extrinsics) {
     try {
       if (typeof enx != "object" || !("toHuman" in enx)) {
-        showLog("continue 1 of ", index);
+        showLog("continue 1 of ", enx);
         continue;
       }
       // let json = enx.toHuman();
-      let json = enx.toJSON();
+      let json = enx.toHuman();
+      showLog(enx.toHuman());
       let hash = enx.hash.toHex();
       // console.log(json, hash);
       // if (json.method.method != "transferKeepAlive" || !json.isSigned) {
       //   showLog("continue 1.1 of ", index);
       //   continue;
       // }
-      if (
-        json.method?.method &&
-        saveTxMethods.indexOf(json.method.method) == -1
-      ) {
-        // console.log("跳过：", json.method.method);
-        continue;
-      }
       let entity = {
         blockHeight,
         hash,
@@ -129,6 +147,8 @@ async function saveTx(blockHash, blockHeight, src, events) {
         // args: JSON.stringify(json.method.args),
         timestamp,
       };
+      let result = "";
+      let txIds = [];
       if (json.isSigned) {
         // entity.era = json.era.ImmortalEra;
         // entity.nonce = enx.nonce.toNumber();
@@ -141,29 +161,57 @@ async function saveTx(blockHash, blockHeight, src, events) {
         ) {
           entity.destAccount = json.method.args.dest.Id;
           entity.amount = json.method.args.value;
+        } else if (entity.method == "batchAll") {
+          let arr = json.method.args.calls;
+          for (i in arr) {
+            let a = arr[i];
+            entity.method = a.method;
+            entity.section = a.section;
+            entity.destAccount = a.args.dest.Id;
+            entity.amount = a.args.value;
+            if (i > 0) {
+              entity.hash = hash + "-" + i;
+            }
+            if (
+              typeof entity.amount == "string" &&
+              entity.amount.indexOf(",") != -1
+            ) {
+              entity.amount = entity.amount.split(",").join("");
+            }
+            showLog("dalTransaction.insert1 ", entity);
+            result = await dalTransaction.insert(entity);
+            txIds.push(result.id || result.lastID);
+          }
         }
       }
-      if (
-        (entity.section == "timestamp" && entity.method == "set") ||
-        entity.method == "noteMinGasPriceTarget"
-      ) {
-        showLog("continue 2 of ", index);
-        continue;
-      }
       if (!entity.method || !entity.section) {
+        showLog("!entity.method || !entity.section", entity);
         continue;
       }
-      showLog("dalTransaction.insert ", index);
-      let result = await dalTransaction.insert(entity);
-      showLog("dalTransaction.insert end", index);
-      let txId = result.id;
-      if (txId == 0) {
+      if (!result) {
+        showLog("dalTransaction.insert ", index,entity);
+        result = await dalTransaction.insert(entity);
+        txIds.push(result.id || result.lastID);
+        if (!result.id) {
+          showLog(
+            "*****************insert double**********************",
+            entity
+          );
+        }
+        showLog("dalTransaction.insert end", index);
+      }
+      if (txIds.length == 0) {
         console.log("transaction save fail ", result);
         console.log("continue 3 of ", index);
         continue;
       }
       showLog("saveEvent start", index);
-      let status = await saveEvent(
+      let txId = txIds[0];
+      if (!txId) {
+        showLog("txId  is null,blockHeight=", blockHeight, result);
+        continue;
+      }
+      let { status, eventCount } = await saveEvent(
         blockHeight,
         src,
         txId,
@@ -171,29 +219,39 @@ async function saveTx(blockHash, blockHeight, src, events) {
         events,
         timestamp
       );
+      if (eventCount) {
+        eventCountAll += eventCount;
+      }
       showLog("dalTransaction.update start", index);
-      await dalTransaction.update({
-        id: txId,
-        status,
-      });
+      for (let tid of txIds) {
+        txCount++;
+        await dalTransaction.updateById(
+          {
+            status,
+          },
+          tid
+        );
+      }
       showLog("dalTransaction.update end", index);
     } catch (e) {
       console.error(e);
       console.log("error enx", enx);
     }
+    index++;
   }
-  return timestamp;
+  return { timestamp, txCount, eventCount: eventCountAll };
 }
 async function saveEvent(blockHeight, src, txId, txIndex, events, timestamp) {
   // events = events.toHuman();
   // console.log(JSON.stringify(events));
-  let status = null;
+  let status = null,
+    eventCount = 0;
   const filtered = events.filter(
     ({ phase }) => phase.isApplyExtrinsic && phase.asApplyExtrinsic.eq(txIndex)
   );
   // console.log(JSON.stringify(filtered));
   if (filtered.length == 0) {
-    return status;
+    return { status, eventCount };
   }
   for (o of filtered) {
     try {
@@ -217,11 +275,12 @@ async function saveEvent(blockHeight, src, txId, txIndex, events, timestamp) {
         status = "failed";
       }
       await dalEvent.insert(entity);
+      eventCount++;
     } catch (e) {
       console.log(e);
     }
   }
-  return status;
+  return { status, eventCount };
 }
 async function main() {
   api = await init();
@@ -241,7 +300,7 @@ async function main() {
   if (tmp.length > 0) {
     currHeight = tmp[0].blockHeight + 1;
   }
-  // currHeight = 12460103;
+  // currHeight = 13652287;
   // console.log("currHeight", currHeight);
   if (maxHeight < currHeight) {
     maxHeight = currHeight + 1;
@@ -281,3 +340,9 @@ function sendLog(msg, data) {
 }
 // main();
 module.exports = main;
+
+// async function a(){
+//   api = await init();
+//   getBlock(13652287);
+// }
+// a();

@@ -92,7 +92,7 @@ global.wsClientList = [];
 initDotChain();
 sub();
 init();
-// myapp();
+myapp();
 
 app.listen(port);
 console.log("listening on ", port);

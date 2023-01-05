@@ -54,8 +54,6 @@ POST /api/dics/list
 
 Query state info from chain.
 
-API as [https://testnet.cess.cloud/#/chainstate](https://testnet.cess.cloud/#/chainstate)
-
 ### Request URL
 
 ```
@@ -98,8 +96,6 @@ or other chain api
 ## Chain consts
 
 Node const query
-
-API as [https://testnet.cess.cloud/#/chainstate/constants](https://testnet.cess.cloud/#/chainstate/constants)
 
 ### Request URL
 
@@ -186,14 +182,11 @@ POST /api/dbcommon/list
 
 The param tableName value as :
 
-- block_account
 - block_event
 - block_info
 - block_transaction
 - dictionary
 - dictionary_category
-- miner
-- miner_summary
 
 
 ### Response JSON as :
