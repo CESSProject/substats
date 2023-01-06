@@ -2,8 +2,8 @@
  * @Description:
  * @Autor: fage
  * @Date: 2022-08-02 10:51:57
- * @LastEditors: lanmeng656 cbf0311@sina.com
- * @LastEditTime: 2022-12-06 10:11:48
+ * @LastEditors: lanmeng656 lanmeng656@google.com
+ * @LastEditTime: 2023-01-06 11:00:06
  * @description: about
  * @author: chenbinfa
  */
@@ -36,6 +36,13 @@ async function initAPI() {
     return initAPI();
   }
   if (api) return api;
+  if (global.dotApi) {
+    console.log('get connect chain api object from global.dotApi');
+    api = global.dotApi;
+    await api.isReady;
+    global.api = api;
+    return api;
+  }
   try {
     isLoading = true;
     const ws = webconfig.wsnode.nodeURL;
@@ -43,6 +50,7 @@ async function initAPI() {
     let apiS = new ApiPromise({ provider: wsProvider });
     await apiS.isReady;
     global.api = apiS;
+    api = apiS;
     isLoading = false;
     return apiS;
   } catch (e) {

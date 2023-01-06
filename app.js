@@ -89,10 +89,12 @@ app.use(function (err, req, res, next) {
   });
 });
 global.wsClientList = [];
-initDotChain();
-sub();
+initDotChain().then(t=>{
+  myapp();
+  sub();
+},console.error);
 init();
-myapp();
+
 
 app.listen(port);
 console.log("listening on ", port);

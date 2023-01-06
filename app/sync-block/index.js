@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-12 15:39:39
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-01-05 14:29:13
+ * @LastEditTime: 2023-01-06 10:56:20
  * @description: about
  * @author: chenbinfa
  */
@@ -284,7 +284,7 @@ async function saveEvent(blockHeight, src, txId, txIndex, events, timestamp) {
 }
 async function main() {
   api = await init();
-  console.log("starting...");
+  console.log("starting sync block info...");
   const platform = os.platform();
   console.log("os platform", platform);
 
