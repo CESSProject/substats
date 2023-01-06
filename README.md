@@ -129,6 +129,11 @@ docker build -t cesslab/substats .
 > It will listen on the port 8080
 
 ```bash
+docker pull cesslab/substats:latest
+
 docker compose -f demo/docker-compose.yml up -d
+// or other version docker compose
+docker-compose -f demo/docker-compose.yml up -d
+
 ```
 * Open [this page](http://localhost:8080/system-status.html) in browser
