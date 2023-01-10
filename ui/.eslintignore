@@ -1,9 +1,0 @@
-node_modules
-build
-src/statics
-public
-README.md
-package.json
-# craco.config.js
-# .eslintrc.js
-yarn.lock

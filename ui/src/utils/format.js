@@ -57,9 +57,9 @@ const formatterCurrency = coin => {
 	if (_.isString(coin)) {
 		coin = _.toNumber(coin);
 	}
-	if (coin == 0) return { money: "0", suffix: "TCESS" };
+	if (coin == 0) return { money: "0", suffix: "DOT" };
 	let k = 1000;
-	let currencyStr = ["PICO", "NANO", "MICRO", "MILLI", "TCESS", "KILO", "MILL", "BILL"];
+	let currencyStr = ["PICO", "NANO", "MICRO", "MILLI", "DOT", "KILO", "MILL", "BILL"];
 	let i = 0;
 	for (let l = 0; l < 8; l++) {
 		if (coin / Math.pow(k, l) < 1) {
@@ -85,9 +85,9 @@ const formatterCurrencyStr = coin => {
 	if (_.isString(coin)) {
 		coin = _.toNumber(coin);
 	}
-	if (coin == 0) return "0 TCESS";
+	if (coin == 0) return "0 DOT";
 	let k = 1000;
-	let currencyStr = ["PICO", "NANO", "MICRO", "MILLI", "TCESS", "KILO", "MILL", "BILL"]; //convert
+	let currencyStr = ["PICO", "NANO", "MICRO", "MILLI", "DOT", "KILO", "MILL", "BILL"]; //convert
 	let i = 0;
 	for (let l = 0; l < 8; l++) {
 		if (coin / Math.pow(k, l) < 1) {

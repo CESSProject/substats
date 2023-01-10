@@ -157,7 +157,7 @@ function Main({ className }) {
 				showType: "copy"
 			},
 			{
-				title: "Amount($TCESS)",
+				title: "Amount($DOT)",
 				dataIndex: "amount",
 				width: "5%",
 				showType: "currency-qianfen"

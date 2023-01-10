@@ -103,22 +103,22 @@ function Main({ className }) {
 		setColumnsAccounts(columns);
 		const columns2 = [
 			{
-				title: "Total Reward($TCESS)",
+				title: "Total Reward($DOT)",
 				dataIndex: "totalReward",
 				showType: "currency-qianfen"
 			},
 			{
-				title: "Available($TCESS)",
+				title: "Available($DOT)",
 				dataIndex: "totalRewardsCurrentlyAvailable",
 				showType: "currency-qianfen"
 			},
 			{
-				title: "Total Not Receive($TCESS)",
+				title: "Total Not Receive($DOT)",
 				dataIndex: "totalNotReceive",
 				showType: "currency-qianfen"
 			},
 			{
-				title: "Collaterals($TCESS)",
+				title: "Collaterals($DOT)",
 				dataIndex: "collaterals",
 				showType: "currency-qianfen"
 			}

@@ -201,7 +201,7 @@ function Main({ className }) {
 				showType: "copy"
 			},
 			{
-				title: "Balances($TCESS)",
+				title: "Balances($DOT)",
 				dataIndex: "amount",
 				width: "5%",
 				showType: "currency-qianfen"
@@ -290,7 +290,7 @@ function Main({ className }) {
 					<div className="table-content">
 						<Descriptions bordered column={1}>
 							<Descriptions.Item label="AccountID">{account}</Descriptions.Item>
-							<Descriptions.Item label="Balances($TCESS)">{formatterCurrencyStr2(detail.amount)}</Descriptions.Item>
+							<Descriptions.Item label="Balances($DOT)">{formatterCurrencyStr2(detail.amount)}</Descriptions.Item>
 							<Descriptions.Item label="Transfers">{detail.txCount}</Descriptions.Item>
 							<Descriptions.Item label="IsMiner">{detail.isMiner == 1 ? "Yes" : "No"}</Descriptions.Item>
 						</Descriptions>

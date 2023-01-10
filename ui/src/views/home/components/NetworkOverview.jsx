@@ -181,7 +181,7 @@ const SearchBar = ({ className, space }) => {
 						<span>{totalPower}</span>
 					</div>
 					<div className="state-box" style={{ marginBottom: 0 }}>
-						<span>Total Issuance($TCESS)</span>
+						<span>Total Issuance($DOT)</span>
 						<span>{totalIssuance}</span>
 					</div>
 					<div className="state-box" style={{ marginBottom: 0 }}>

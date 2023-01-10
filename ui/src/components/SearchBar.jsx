@@ -121,7 +121,7 @@ const SearchBar = ({ className }) => {
 		if (type == 2) {
 			v = v / store;
 		}
-		return v.toFixed(2) + "  TCESS";
+		return v.toFixed(2) + "  DOT";
 	};
 
 	const columns = [

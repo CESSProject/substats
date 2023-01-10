@@ -1,10 +1,3 @@
-/*
- * @description: webpack配置文件
- * @author: Jack Chen @懒人码农
- * @Date: 2022-04-24 10:01:40
- * @LastEditors: fage
- * @LastEditTime: 2022-07-07 14:32:46
- */
 
 const CracoLessPlugin = require("craco-less");
 const path = require("path");

@@ -38,7 +38,7 @@ const columns = [
 		sorter: true
 	},
 	{
-		title: "Balances($TCESS)",
+		title: "Balances($DOT)",
 		dataIndex: "amount",
 		width: "20%",
 		showType: "currency-qianfen",
@@ -60,7 +60,7 @@ const columns = [
 ];
 if (isM) {
 	columns[1].title = "Balances";
-	columns[1].tpl = "{amount} ($TCESS)";
+	columns[1].tpl = "{amount} ($DOT)";
 }
 
 const Home = ({ ...props }) => {

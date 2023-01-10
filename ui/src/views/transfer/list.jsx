@@ -103,7 +103,7 @@ const columns = [
 	// 	showType: "copy"
 	// },
 	{
-		title: "Amount($TCESS)",
+		title: "Amount($DOT)",
 		dataIndex: "amount",
 		width: "5%",
 		sorter: true,
@@ -120,7 +120,7 @@ const columns = [
 ];
 if (isM) {
 	columns[4].title = "Amount";
-	columns[4].tpl = "{amount} ($TCESS)";
+	columns[4].tpl = "{amount} ($DOT)";
 }
 
 const Main = ({ ...propsS }) => {

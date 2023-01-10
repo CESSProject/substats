@@ -186,7 +186,7 @@ function formatOne(column) {
 				return (
 					<>
 						<span className="money">{text && text.money}</span>
-						<span className="suffix">{text && text.suffix} TCESS</span>
+						<span className="suffix">{text && text.suffix} DOT</span>
 					</>
 				);
 			};

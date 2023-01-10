@@ -120,7 +120,7 @@ function getColumns(type = "table") {
 			sorter: true
 		},
 		{
-			title: "Mining reward($TCESS)",
+			title: "Mining reward($DOT)",
 			dataIndex: "totalReward",
 			width: "20%",
 			showType: "currency-qianfen",
