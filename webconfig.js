@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-11 15:11:36
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-01-05 17:13:48
+ * @LastEditTime: 2023-01-09 17:37:04
  */
 "use strict";
 const path = require("path");
@@ -16,7 +16,7 @@ module.exports = {
   },
   host: "substats.cess.cloud",
   port: {
-    http: 8080,
+    http: 80,
   },
   publicApi: {
     secret: "MA14BAHJ2JEASL",

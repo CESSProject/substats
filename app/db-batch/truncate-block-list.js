@@ -2,8 +2,8 @@
  * @Description:
  * @Autor: fage
  * @Date: 2022-08-05 11:15:38
- * @LastEditors: lanmeng656 cbf0311@sina.com
- * @LastEditTime: 2022-12-06 10:01:45
+ * @LastEditors: lanmeng656 lanmeng656@google.com
+ * @LastEditTime: 2023-01-10 11:55:08
  * @description: about
  * @author: chenbinfa
  */
@@ -18,9 +18,6 @@ async function main() {
     "tb_block_transaction",
     "tb_block_event",
     "tb_block_account",
-    "tb_miner",
-    "tb_miner_summary",
-    "tb_storage_power_trend",
   ];
   for (let tb of tables) {
     console.log("truncating", tb);
@@ -28,6 +25,7 @@ async function main() {
     console.log(result);
     console.log("truncating", tb, "sccuess!");
   }
+  await dalBlock.query('vacuum');
   console.log("truncate complete!");
   process.exit();
 }

@@ -1,0 +1,90 @@
+.containner-in {
+	display: block;
+	overflow: hidden;
+	padding-bottom: 20px;
+	.btn-more {
+		background-color: rgb(223 235 252);
+		padding: 2px 16px;
+		border-radius: 4px;
+		color: rgb(132 177 246);
+	}
+	.btn-more:hover {
+		background-color: #73a8ec;
+		color: #fff;
+	}
+	@media screen and (max-width: 900px) {
+		.ant-card-body {
+			margin: 0;
+			padding: 10px;
+		}
+		.chart-box {
+			display: block;
+			overflow: hidden;
+			clear: both;
+			margin: 10px 0;
+			.chart-left {
+				clear: both;
+				display: block;
+			}
+			.chart-right {
+				clear: both;
+				display: block;
+				margin-top: 20px;
+			}
+		}
+		.list-box {
+			display: block;
+			overflow: hidden;
+			clear: both;
+			margin: 20px 0;
+			.chart-left {
+				clear: both;
+				display: block;
+			}
+			.chart-right {
+				clear: both;
+				display: block;
+				margin-top: 20px;
+			}
+		}
+	}
+	@media screen and (min-width: 901px) {
+		.chart-box {
+			display: block;
+			overflow: hidden;
+			clear: both;
+			margin: 10px 0;
+			.chart-left {
+				width: 30%;
+				float: left;
+			}
+			.chart-right {
+				width: 69%;
+				float: left;
+				margin-left: 1%;
+			}
+		}
+		.list-box {
+			display: block;
+			overflow: hidden;
+			clear: both;
+			margin: 10px 0;
+			margin-top: 20px;
+			.chart-left {
+				width: 49.5%;
+				float: left;
+			}
+			.chart-right {
+				width: 49.5%;
+				float: right;
+			}
+		}
+	}
+
+	.myRadius {
+		border-radius: 4px;
+	}
+	.ant-card-head {
+		padding: 0 14px !important;
+	}
+}

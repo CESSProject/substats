@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-12 15:39:39
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-01-06 10:56:20
+ * @LastEditTime: 2023-01-10 11:51:27
  * @description: about
  * @author: chenbinfa
  */
@@ -25,9 +25,11 @@ const dalBlock = Dal("tb_block_info");
 const dalTransaction = Dal("tb_block_transaction");
 const dalEvent = Dal("tb_block_event");
 let wsHelper = require("../../bll/ws-helper");
+let accountSave = require("./account");
 
 const moment = require("moment");
 var os = require("os");
+const common = require("../../util/common");
 
 async function getBlock(value) {
   showLog(
@@ -40,12 +42,17 @@ async function getBlock(value) {
     hash = value;
   } else {
     // console.log("getBlockHash", value);
+    common.useTime("getBlockHash", 1);
     let result = await api.rpc.chain.getBlockHash(value);
+    common.useTime("getBlockHash");
     showLog("getBlockHash success", value);
     hash = result.toHex();
   }
   showLog("getBlock", hash);
+  common.useTime("getBlock", 1);
   const blockInfo = await api.rpc.chain.getBlock(hash);
+  console.log("blockInfo length", JSON.stringify(blockInfo).length);
+  common.useTime("getBlock");
   const blockHeight = blockInfo.block.header.number.toNumber();
   showLog("dalBlock.findWithQuery,blockHeight:", blockHeight);
   sendLog("log", "saving block " + blockHeight);
@@ -54,7 +61,10 @@ async function getBlock(value) {
     return console.log("Item is exists");
   }
   showLog("api.query.system.events.at", hash);
+  common.useTime("get events", 1);
   const events = await api.query.system.events.at(hash);
+  common.useTime("get events");
+  console.log("event length", JSON.stringify(events).length);
   showLog("saveTx", blockHeight);
   const { timestamp, txCount, eventCount } = await saveTx(
     hash,
@@ -154,12 +164,14 @@ async function saveTx(blockHash, blockHeight, src, events) {
         // entity.nonce = enx.nonce.toNumber();
         // entity.signature = enx.signature.toHex();
         entity.signer = json.signer.Id;
+        await accountSave(api, entity.signer);
         // entity.tip = enx.tip.toNumber();
         if (
           entity.method == "transferKeepAlive" &&
           entity.section == "balances"
         ) {
           entity.destAccount = json.method.args.dest.Id;
+          await accountSave(api, entity.destAccount);
           entity.amount = json.method.args.value;
         } else if (entity.method == "batchAll") {
           let arr = json.method.args.calls;
@@ -168,6 +180,7 @@ async function saveTx(blockHash, blockHeight, src, events) {
             entity.method = a.method;
             entity.section = a.section;
             entity.destAccount = a.args.dest.Id;
+            await accountSave(api, entity.destAccount);
             entity.amount = a.args.value;
             if (i > 0) {
               entity.hash = hash + "-" + i;
@@ -189,7 +202,7 @@ async function saveTx(blockHash, blockHeight, src, events) {
         continue;
       }
       if (!result) {
-        showLog("dalTransaction.insert ", index,entity);
+        showLog("dalTransaction.insert ", index, entity);
         result = await dalTransaction.insert(entity);
         txIds.push(result.id || result.lastID);
         if (!result.id) {
@@ -255,12 +268,16 @@ async function saveEvent(blockHeight, src, txId, txIndex, events, timestamp) {
   }
   for (o of filtered) {
     try {
+      let data = o.event.data.toHuman();
+      if (typeof data == "object" && (data.who || data.account)) {
+        await accountSave(api, data.who || data.account);
+      }
       let entity = {
         blockHeight,
         txId,
         method: o.event.method,
         section: o.event.section,
-        data: JSON.stringify(o.event.data.toHuman()),
+        data: JSON.stringify(data),
         index: 0,
         timestamp,
       };
@@ -283,7 +300,9 @@ async function saveEvent(blockHeight, src, txId, txIndex, events, timestamp) {
   return { status, eventCount };
 }
 async function main() {
+  common.useTime("init polkdot chain rpc", 1);
   api = await init();
+  common.useTime("init polkdot chain rpc");
   console.log("starting sync block info...");
   const platform = os.platform();
   console.log("os platform", platform);
