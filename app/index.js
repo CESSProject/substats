@@ -4,4 +4,4 @@ module.exports = main;
 function main() {
   syncBlock();
 }
-// main();
+main();

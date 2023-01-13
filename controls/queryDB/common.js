@@ -1,10 +1,7 @@
 /*
- * @Description:
- * @Autor: fage
- * @Date: 2022-07-11 15:11:35
+ * @Description:This is a public database reading component, which aims to return the data records to be read from the front end
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-01-04 10:23:11
- * @description: about
+ * @LastEditTime: 2023-01-13 16:32:51
  * @author: chenbinfa
  */
 "use strict";
@@ -21,31 +18,33 @@ let tables = null;
 
 module.exports = async function (req, res, next) {
   let funs = {
-    list: list,
-    create: create,
-    update: update,
-    del: del,
-    column: column,
-    detail: detail,
-    batch_update: batchUpdate,
-    copy: copy,
-    get_table_names: getTableNames,
-    get_colum_names: getColumNames,
+    list: list, //query list from database table
+    create: create, //create a item to the database
+    update: update,//update a item at database table
+    del: del,//delete a item from database table
+    column: column,//get table column list
+    detail: detail,//get table row detail
+    batch_update: batchUpdate,//batch update item as database
+    copy: copy,//copy a item
+    get_table_names: getTableNames,//get all table names of database
+    get_colum_names: getColumNames,//get columns list of a table
   };
   let ret = {
     msg: "ok",
     data: [],
   };
-  let tableName = req.body.tableName;
+  let tableName = req.body.tableName;//table name by request
   let dal = Dal("tb_" + tableName);
-  const valiResult = await checkTableName(dal, tableName);
+  const valiResult = await checkTableName(dal, tableName);//check table name if exist
   if (!valiResult) {
+    //if not exists return error
     return res.json({ msg: "table [" + tableName + "] not found" });
   }
   let f = funs[req.body.action];
   if (f) {
     f(ret, dal, req, res);
   } else {
+    //if action not found return a error
     ret.msg = "action(" + req.body.action + ")not found";
     res.json(ret);
   }

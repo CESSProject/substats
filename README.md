@@ -11,8 +11,6 @@ We have designed a set of explorer modular components for the Substrate ecosyste
 
 ● **One-click construction**: Learn from the features of Polkadot.js App. The Substats framework only needs to configure a small amount of information to achieve one-click deployment and startup. Significantly reduce development costs.
 
-● **Modular UI components**: The UI components of Substats are all decoupled, allowing developers to customize the development of UI components with low threshold.
-
 ● **Open source and security**: Substats only provides completely open source code, and is not responsible for replacing management and operation services. All services are deployed and operated by the project party, avoiding trust costs.
 
 ### More documents
@@ -41,15 +39,6 @@ We have designed a set of explorer modular components for the Substrate ecosyste
 - docker engine    v20.10+
 - docker compose   v2.12+
 
-### c. frontend UI
-
-- React
-- Ant-design
-- Ant-design/charts
-- React-router-dom
-- Styled-components
-- Reduxjs/toolkit
-
 ## 3. Install guide
 
 > Note : This system supports MySQL and sqlite3 databases. If npm start with a MySQL account config file, use MySQL else use sqlite3 database.
@@ -77,15 +66,13 @@ cd substats
 npm install // or yarn
 ```
 
-### 3) Install frontend UI
+### 3). Config
 
-```
-cd ui
-npm install
-// or
-yarn install
-```
+This project supports most of the chain of polkadot ecosystem. You can switch as long as you modify the RPC node address in the configuration file :
 
+[/webconfig.js](https://github.com/CESSProject/substats/blob/master/webconfig.js)
+
+And node RPC url config at :<https://github.com/CESSProject/substats/blob/a20719f77624a3f2658a3562cf041192500b7a89/webconfig.js#L13>
 
 ## 4. Test guide
 
@@ -107,15 +94,6 @@ npm start ./mysql-config.json    //will use the mysql database.
 > It will listen on the port 8080
 
 > Note : If npm start with a MySQL account config file, use MySQL , else use the sqlite3 database.
-
-
-### 2) Run frontend UI
-
-```
-npm run start:ui
-// or
-yarn run start:ui
-```
 
 
 ## 6. Inspect the system status
