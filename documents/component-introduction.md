@@ -27,11 +27,9 @@ These components are described below
 ### 1. Database reset component
 
 
-Source code directory:/app/db batch/truncate block list. js
+Source code directory:/app/db batch/truncate_block_list.js
 
 Operation method:
-
-
 
 ``` javascript
 
@@ -39,25 +37,18 @@ npm run reset
 
 // or
 
-node ./ app/db-batch/truncate-block-list.js
+node ./app/db-batch/truncate-block-list.js
 
 ```
 
-
-
 Function introduction: clear the local database, including block information table, transaction record table, events record table, account list table, and finally shrink the database idle space
 
-
-
 ### 2. Blockchain data synchronization component
-
 
 
 Source code directory:/app/sync-block/
 
 Operation method:
-
-
 
 ``` javascript
 
@@ -65,7 +56,7 @@ npm run app
 
 // or
 
-node ./ app/index.js
+node ./app/index.js
 
 ```
 
@@ -74,16 +65,15 @@ Function introduction: Get the original block data from the blockchain, synchron
 
 ##### 2.1. Block data acquisition component
 
-Source code directory:/app/sync-block/hain-querier/
+Source code directory:/app/sync-block/chain-queryer/
 
 Operation method: cannot run independently
 
 Function introduction: obtain block original data from the blockchain and synchronize block information
 
-
 ##### 2.2. Block data processing component
 
-Source code directory:/app/sync block/data process/
+Source code directory:/app/sync-block/data-process/
 
 Operation method: cannot run independently
 
@@ -92,7 +82,7 @@ Function description: process the synchronized block data, and analyze the block
 
 ##### 2.3. Block data saving component
 
-Source code directory:/app/sync block/data store/
+Source code directory:/app/sync-block/data-store/
 
 Operation method: cannot run independently
 
