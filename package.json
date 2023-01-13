@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./app",
-    "start:sync": "node ./app/index.js",
+    "start:mysql": "npm start ./mysql-config.json",
+    "app": "node ./app/index.js",
     "reset": "node ./app/db-batch/truncate-block-list.js",
     "test": "jest"
   },

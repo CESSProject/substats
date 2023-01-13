@@ -3,11 +3,11 @@ global.webconfig = webconfig;
 const initDatabaseConfig = require("./bll/init-database-config");
 const arguments = process.argv;
 let dbconfigFile = null;
-if (arguments.length > 2) {
+if (arguments.length > 2) {//get config from command arguments
   console.log("arguments[2]", arguments[2]);
   dbconfigFile = arguments[2];
 }
-initDatabaseConfig(dbconfigFile);
+initDatabaseConfig(dbconfigFile);//init the database config from config file
 
 const express = require("express");
 const compression = require("compression");
@@ -19,7 +19,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const expressWs = require("express-ws");
 require("./util/add-functions");
-const myapp = require("./app/index");
+const myapp = require("./app/sync-block/index.js");
 
 const routes = require("./routes/index");
 const api = require("./routes/api");
@@ -40,6 +40,8 @@ app.use(cors());
 
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
+
+//add log with the format
 logger.token("time", function (req, res) {
   return moment().format("YYYY-MM-DD HH:mm:ss");
 });
@@ -57,14 +59,16 @@ app.use(
     },
   })
 );
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false, limit: "10000kb" }));
-app.use(express.static(path.join(__dirname, "ui/build")));
-app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", routes);
-app.use("/api", api);
-app.ws("/ws", ws);
+// will can get req.body object
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false, limit: "10000kb" }));//max req size
+// app.use(express.static(path.join(__dirname, "ui/build")));
+app.use(express.static(path.join(__dirname, "public")));//config the static dir
+
+app.use("/", routes);//base path
+app.use("/api", api);//api router
+app.ws("/ws", ws); // websocker router
 app.use(function (req, res, next) {
   var err = new Error("Not Found");
   err.status = 404;
@@ -88,13 +92,13 @@ app.use(function (err, req, res, next) {
     error: err,
   });
 });
-global.wsClientList = [];
-initDotChain().then(t=>{
+global.wsClientList = [];//all websocker client
+initDotChain().then(t=>{ // init the chain connect
   myapp();
   sub();
 },console.error);
 init();
 
 
-app.listen(port);
+app.listen(port);//start the http webserver
 console.log("listening on ", port);

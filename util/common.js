@@ -27,8 +27,28 @@ module.exports = {
     isEmpty:isEmpty,
     getMoneyFloat:getMoneyFloat,
     createTimestamp:createTimestamp,
-    raw:raw
+    raw:raw,
+    useTime
 };
+const cache = {};
+function useTime(name, isStart) {
+	if (isStart) {
+		cache[name] = new Date().valueOf();
+	} else {
+		if (!cache[name]) {
+			console.log("cache not found", name);
+		}
+		let now = new Date().valueOf();
+		let t = now - cache[name];
+		let uni = "ms";
+		if (t > 1000) {
+			t = parseInt(t / 1000);
+			uni = "s";
+		}
+		console.log("run time of ", name, t, uni);
+        return t;
+	}
+}
 function getYYYYMMDD(dateTime) {
     let myDate;
     if (!dateTime) {

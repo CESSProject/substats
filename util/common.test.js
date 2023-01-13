@@ -106,5 +106,12 @@ test("test common function createTimestamp", () => {
 
 test("test common function raw", () => {
   let result = common.raw({ a: 1, b: 2, c: 3 });
-  expect(result).toEqual('a=1&b=2&c=3');
+  expect(result).toEqual("a=1&b=2&c=3");
+});
+test("test useTime function", () => {
+  common.useTime("test", 1);
+  setTimeout((tt) => {
+    let t = common.useTime("test");
+    expect(t > 99).toEqual(true);
+  }, 100);
 });

@@ -66,6 +66,13 @@ cd substats
 npm install // or yarn
 ```
 
+### 3). Config
+
+This project supports most of the chain of polkadot ecosystem. You can switch as long as you modify the RPC node address in the configuration file :
+
+[/webconfig.js](https://github.com/CESSProject/substats/blob/master/webconfig.js)
+
+And node RPC url config at :<https://github.com/CESSProject/substats/blob/a20719f77624a3f2658a3562cf041192500b7a89/webconfig.js#L13>
 
 ## 4. Test guide
 
