@@ -11,9 +11,9 @@ module.exports = {
   sitename: "CESS Brower",
   wsnode: {
     nodeURL: "wss://rpc.dotters.network/polkadot", // config the block chain node rpc websocket url
-    // nodeURL: "wss://rococo-rockmine-rpc.polkadot.io",
-    // nodeURL: "wss://1rpc.io/ksm",    
-    // nodeURL: "wss://1rpc.io/dot",    
+    // nodeURL: "wss://rococo-rockmine-rpc.polkadot.io",//rococo network rpc
+    // nodeURL: "wss://1rpc.io/ksm",    //kusama network rpc
+    // nodeURL: "wss://1rpc.io/dot",    //polkadot network rpc
     // nodeURL: "wss://devnet-rpc.cess.cloud/ws/",
     keyringOption: { type: "sr25519", ss58Format: 42 },
   },

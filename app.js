@@ -30,6 +30,7 @@ const initDotChain = require("./bll/init-polkadot-api");
 const sub = require("./bll/sub");
 const init = require("./bll/init");
 
+// defaut use the port of webconfig
 const port = webconfig.port.http || 80;
 
 const app = express();
@@ -38,6 +39,8 @@ expressWs(app);
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(compression()); //gzip
+
+//CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.
 app.use(cors());
 
 // uncomment after placing your favicon in /public
@@ -57,6 +60,7 @@ logger.token("host", function (req, res) {
 app.use(
   logger(":time :method :status :host :realip :url", {
     skip: function (req, res) {
+      //skip show log when status code is 200 or 304,because this is normal .
       return res.statusCode == 200 || res.statusCode == 304;
     },
   })
