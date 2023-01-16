@@ -19,7 +19,6 @@
 
 
 
-
 These components are part of the whole project. They cannot be run separately except for the database reset component and the blockchain data synchronization component.
 
 These components are described below
