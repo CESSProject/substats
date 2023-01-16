@@ -1,9 +1,9 @@
 /*
- * @Description:
+ * @Description:Init connect to rpc node
  * @Autor: fage
  * @Date: 2022-07-11 17:31:18
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-01-06 11:01:49
+ * @LastEditTime: 2023-01-16 11:32:34
  */
 const { ApiPromise, WsProvider, Keyring } = require("@polkadot/api");
 const webconfig = require("../webconfig");

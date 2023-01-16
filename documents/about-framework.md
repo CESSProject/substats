@@ -22,7 +22,6 @@ Including:
 - Block synchronization service
 - Transaction record synchronization service
 - Events synchronization service
-- Miner list synchronization service
 - Account list synchronization service
 - Transaction volume statistics service
 
@@ -51,7 +50,7 @@ Technology stack:
 
 - Node.js
 - Server:Express websocket
-- Database:Mysql
+- Database:Mysql/SQLITE3
 - Polkadot
 - Jest
 

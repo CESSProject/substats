@@ -1,6 +1,8 @@
 const webconfig = require("./webconfig");
-global.webconfig = webconfig;
+global.webconfig = webconfig;//set grobal attribute for more convenient call
 const initDatabaseConfig = require("./bll/init-database-config");
+
+// check the run arguments and use the corresponding database
 const arguments = process.argv;
 let dbconfigFile = null;
 if (arguments.length > 2) {//get config from command arguments

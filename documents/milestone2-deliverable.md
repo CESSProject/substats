@@ -12,7 +12,7 @@
 | 2b.    | Operation Manual       | We will write an operation manual explaining how data reading, how network switching and processing can be used.                                                                                                                                                                        |
 
 
-# Deliverables response
+# Deliverables Response
 
 ## 0a. License
 The License file <https://github.com/CESSProject/substats/blob/master/LICENSE>
@@ -50,9 +50,9 @@ When the system is running, we will run an application to obtain blockchain data
 │   ├── db-batch/                                        #  Database batch operation tool
 │       └── truncate-block-list.js                       #  Reset database tool
 │   └── sync-block/                                      #  This is a application for synchronizing blockchain data to local database
-│       ├── chain-queryer                                   #  Account handler
-│       ├── data-process                                     #  Main application for synchronizing blockchain data as blocks, account, transactions, events.
-│       └── data-store                           #  For show a block data to debug
+│       ├── chain-queryer                                #  Account handler
+│       ├── data-process                                 #  Main application for synchronizing blockchain data as blocks, account, transactions, events.
+│       └── data-store                                   #  For show a block data to debug
 ...
 ```
 When running "npm start", this program will also start with it.
@@ -126,8 +126,8 @@ Request Body
   "tableName": "block_account",
   "sorter": [
     {
-      "column": "amount",
-      "order": "desc"
+      "column": "amount",    //sort by amount
+      "order": "desc"        //order by amount desc
     }
   ],
   "pageindex": 1,
@@ -168,8 +168,3 @@ Operation Manual
 
 About the project
 <https://github.com/CESSProject/substats/blob/master/documents/about-framework.md>
-
-
-
-
-

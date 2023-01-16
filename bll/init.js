@@ -1,9 +1,9 @@
 /*
- * @Description:
+ * @Description: init dictionary list from database 
  * @Autor: fage
  * @Date: 2022-07-11 20:07:29
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2022-12-09 14:57:59
+ * @LastEditTime: 2023-01-16 11:33:04
  * @description: about
  * @author: chenbinfa
  */

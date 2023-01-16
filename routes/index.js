@@ -1,9 +1,9 @@
 /*
- * @Description: 
+ * @Description: The router of index page
  * @Autor: fage
  * @Date: 2022-07-11 15:11:36
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-01-04 10:16:27
+ * @LastEditTime: 2023-01-16 15:02:24
  */
 "use strict";
 

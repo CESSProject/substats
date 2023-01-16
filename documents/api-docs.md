@@ -1,5 +1,6 @@
 # API Doc
 
+> Note: All API request method is POST , and request body data type is JSON.  Response data type also JSON.
 
 ## Data dictionary
 

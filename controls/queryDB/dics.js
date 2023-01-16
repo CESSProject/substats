@@ -1,9 +1,9 @@
 /*
- * @Description:
+ * @Description: Get dictionary list from cache
  * @Autor: fage
  * @Date: 2022-07-11 15:11:35
- * @LastEditors: chenbinfa
- * @LastEditTime: 2022-07-21 16:22:16
+ * @LastEditors: lanmeng656 lanmeng656@google.com
+ * @LastEditTime: 2023-01-16 14:59:56
  * @description: about
  * @author: chenbinfa
  */
