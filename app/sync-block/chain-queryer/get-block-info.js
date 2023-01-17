@@ -1,13 +1,14 @@
 const common = require("../../../util/common");
 
+//get block info from chain
 async function getBlock(value) {
   let hash = "";
   if (typeof value != "number") {
     hash = value;
   } else {
     // console.log("getBlockHash", value);
-    common.useTime("getBlockHash", 1);
-    let result = await api.rpc.chain.getBlockHash(value);
+    common.useTime("getBlockHash", 1);//log run time
+    let result = await api.rpc.chain.getBlockHash(value);//if value is block height ,query the block hash
     common.useTime("getBlockHash");
     showLog("getBlockHash success", value);
     hash = result.toHex();

@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-11 15:11:35
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-01-16 15:22:58
+ * @LastEditTime: 2023-01-17 10:18:33
  * @description: about
  * @author: chenbinfa
  */
@@ -26,13 +26,13 @@ module.exports = async function (req, res, next) {
   if (!api.query[ac1]) {
     return res.json({ msg: "api.query." + ac1 + " not a function" });
   }
-  if (!api.query[ac1][ac2]) {
+  if(!api.query[ac1][ac2]){
     return res.json({
       msg: "api.query." + ac1 + "." + ac2 + " not a function",
     });
   }
-  let retsult;
-  let fun = api.query[ac1][ac2];
+  let retsult; 
+  let fun = api.query[ac1][ac2];//the ac1 and ac2 is function name
   if (fun.entries && typeof fun.entries == "function") {
     if (param && param.id) {
       retsult = await fun(param.id);
