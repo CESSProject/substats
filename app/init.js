@@ -1,9 +1,9 @@
 /*
- * @Description:
+ * @Description:init polkadot.js and connect to rpc node
  * @Autor: fage
  * @Date: 2022-08-02 10:51:57
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-01-06 11:00:06
+ * @LastEditTime: 2023-01-17 10:32:08
  * @description: about
  * @author: chenbinfa
  */
@@ -23,13 +23,14 @@ let isLoading = false;
 let webconfigS = require("../webconfig");
 
 async function initAPI() {
+  //init webconfig
   webconfig = global.webconfig;
   if (!webconfig) {
     webconfig = webconfigS;
     global.webconfig = webconfig;
   }
   if (!webconfig.mysql) {
-    initDatabaseConfig();
+    initDatabaseConfig();//init database connect
   }
   if (isLoading) {
     await common.sleep(500);

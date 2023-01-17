@@ -2,7 +2,7 @@
 var url = require('url');
 var querystring = require('querystring');
 
-
+//Url parse function
 function urlParse(u) {
     try {
         let info = url.parse(u);

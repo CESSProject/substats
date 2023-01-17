@@ -135,7 +135,7 @@ async function saveTx(blockHash, blockHeight, src, events) {
         if (eventCount) {
           eventCountAll += eventCount;
         }
-        showLog("dalTransaction.update start", index);
+        // showLog("dalTransaction.update start", index);
         for (let tid of txIds) {
           txCount++;
           await dalTransaction.updateById(
@@ -145,7 +145,7 @@ async function saveTx(blockHash, blockHeight, src, events) {
             tid
           );
         }
-        showLog("dalTransaction.update end", index);
+        // showLog("dalTransaction.update end", index);
       } catch (e) {
         console.error(e);
         console.log("error enx", enx);

@@ -1,9 +1,9 @@
 /*
- * @Description:
+ * @Description:Batch update rows
  * @Autor: fage
  * @Date: 2022-07-11 15:11:36
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-01-04 10:09:07
+ * @LastEditTime: 2023-01-16 11:35:06
  */
 module.exports = async function (ret, dal, req, res) {
   try {

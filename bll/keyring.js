@@ -1,9 +1,9 @@
 /*
- * @Description:
+ * @Description:Make keyring class
  * @Autor: fage
  * @Date: 2022-07-11 17:32:07
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-01-04 10:11:09
+ * @LastEditTime: 2023-01-16 11:33:25
  * @description: about
  */
 const { Keyring } = require("@polkadot/api");

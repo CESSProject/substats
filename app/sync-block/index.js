@@ -1,9 +1,9 @@
 /*
- * @Description:
+ * @Description: This is a program to synchronize block data from the chain. This page is the main process
  * @Autor: fage
  * @Date: 2022-07-12 15:39:39
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-01-13 16:36:57
+ * @LastEditTime: 2023-01-16 10:55:12
  * @description: about
  * @author: chenbinfa
  */
@@ -42,8 +42,13 @@ async function main() {
   console.log("starting sync block info...");
   
 
-  let maxHeight = 13780669;
   let currHeight = 13780000;
+  let maxHeight=await api.query.system.number();
+  maxHeight=maxHeight.toNumber();
+  if(currHeight>maxHeight){
+    currHeight=maxHeight-1000;
+  }
+  
   api.rpc.chain.subscribeNewHeads((header) => {
     maxHeight = header.number.toNumber();
     console.log(`maxHeight ${header.number}`);
@@ -101,4 +106,4 @@ global.sendLog = sendLog;
 // main();
 module.exports = main;
 
-main();
+// main();

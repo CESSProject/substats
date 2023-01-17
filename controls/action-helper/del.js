@@ -1,9 +1,9 @@
 /*
- * @Description: 
+ * @Description: Remove a row
  * @Autor: fage
  * @Date: 2022-07-11 15:11:36
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-01-04 10:09:31
+ * @LastEditTime: 2023-01-16 11:36:10
  */
 "use strict";
 

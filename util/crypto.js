@@ -1,4 +1,6 @@
 "use strict";
+
+// crypto tools
 var crypto = require('crypto');
 module.exports={
     md5:md5,

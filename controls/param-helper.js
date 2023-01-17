@@ -1,9 +1,11 @@
 "use strict";
+// The request param process function
 module.exports = function (req) {
+    //req.body
     if (req.body.id && !isNaN(req.body.id)) {
         req.body.id = parseInt(req.body.id);
     }
-    if (req.query.id && !isNaN(req.query.id)) {
+    if (req.query?.id && !isNaN(req.query.id)) {
         req.query.id = parseInt(req.query.id);
     }
     if (req.body.pageindex && !isNaN(req.body.pageindex)) {

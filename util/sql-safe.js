@@ -1,9 +1,9 @@
 /*
- * @Description:
+ * @Description:Sql query keywrod safe check
  * @Autor: fage
  * @Date: 2022-07-11 15:11:36
- * @LastEditors: chenbinfa
- * @LastEditTime: 2022-07-22 10:40:14
+ * @LastEditors: lanmeng656 lanmeng656@google.com
+ * @LastEditTime: 2023-01-16 15:05:21
  * @description: about
  * @author: chenbinfa
  */

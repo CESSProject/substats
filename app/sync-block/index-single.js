@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-12 15:39:39
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-01-13 14:26:18
+ * @LastEditTime: 2023-01-16 10:37:05
  * @description: about
  * @author: chenbinfa
  */
@@ -182,7 +182,7 @@ async function saveTx(blockHash, blockHeight, src, events) {
             ) {
               entity.amount = entity.amount.split(",").join("");
             }
-            showLog("dalTransaction.insert1 ", entity);
+            // showLog("dalTransaction.insert1 ", entity);
             result = await dalTransaction.insert(entity);
             txIds.push(result.id || result.lastID);
           }
@@ -193,7 +193,7 @@ async function saveTx(blockHash, blockHeight, src, events) {
         continue;
       }
       if (!result) {
-        showLog("dalTransaction.insert ", index, entity);
+        // showLog("dalTransaction.insert ", index, entity);
         result = await dalTransaction.insert(entity);
         txIds.push(result.id || result.lastID);
         if (!result.id) {
@@ -202,7 +202,7 @@ async function saveTx(blockHash, blockHeight, src, events) {
             entity
           );
         }
-        showLog("dalTransaction.insert end", index);
+        // showLog("dalTransaction.insert end", index);
       }
       if (txIds.length == 0) {
         console.log("transaction save fail ", result);
@@ -226,7 +226,7 @@ async function saveTx(blockHash, blockHeight, src, events) {
       if (eventCount) {
         eventCountAll += eventCount;
       }
-      showLog("dalTransaction.update start", index);
+      // showLog("dalTransaction.update start", index);
       for (let tid of txIds) {
         txCount++;
         await dalTransaction.updateById(
@@ -236,7 +236,7 @@ async function saveTx(blockHash, blockHeight, src, events) {
           tid
         );
       }
-      showLog("dalTransaction.update end", index);
+      // showLog("dalTransaction.update end", index);
     } catch (e) {
       console.error(e);
       console.log("error enx", enx);

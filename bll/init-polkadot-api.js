@@ -1,9 +1,9 @@
 /*
- * @Description:
+ * @Description:Init connect to rpc node
  * @Autor: fage
  * @Date: 2022-07-11 17:31:18
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-01-06 11:01:49
+ * @LastEditTime: 2023-01-16 15:28:22
  */
 const { ApiPromise, WsProvider, Keyring } = require("@polkadot/api");
 const webconfig = require("../webconfig");
@@ -18,16 +18,19 @@ function main() {
   return new Promise(async (resolve, reject) => {
     try {
       console.log('start connect to chain rpc...');
+      //instantiation keyring class
       keyring = new Keyring(config.keyringOption);
+      //check if is connecting,avoid duplicate connections
       if (waiting) {
         console.log('connecting to chain rpc');
         return;
       }
+      //Notify the front end of the connection status
       wsHelper.send("rpc", "connect", "loading");
       waiting = false;
       api = new ApiPromise({
         provider,
-      });      
+      });
       api.on("connected", () => {
         console.log("connect to chain rpc success ", config.nodeURL);
         wsHelper.send("rpc", "connect", "ok");

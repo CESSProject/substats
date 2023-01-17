@@ -38,11 +38,3 @@ Status dictionary list, including key-value dictionary transactional status
 ### tb_dictionary_category
 
 Status dictionary type list
-
-### tb_miner
-
-Miners list, which keeps the synchronization time from blockchain
-
-### tb_miner_summary
-
-Total of miner's power list

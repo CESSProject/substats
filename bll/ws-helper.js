@@ -1,3 +1,5 @@
+// websocket helper of send message
+
 function send(way, action, data) {
   const clientList = global.wsClientList;
   if (!clientList || clientList.length == 0) {
