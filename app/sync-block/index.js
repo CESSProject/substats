@@ -3,10 +3,11 @@
  * @Autor: fage
  * @Date: 2022-07-12 15:39:39
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-01-16 10:55:12
+ * @LastEditTime: 2023-02-01 10:48:04
  * @description: about
  * @author: chenbinfa
  */
+const { createSpinner } = require("nanospinner");
 const init = require("../init");
 let api = null;
 
@@ -18,37 +19,30 @@ let wsHelper = require("../../bll/ws-helper");
 var os = require("os");
 const common = require("../../util/common");
 
-const {
-  getBlockInfo,
-  getEvents,
-  getTransactions,
-} = require("./chain-queryer");
-const {
-  processBlockInfo,
-} = require("./data-process");
-const {
-  saveBlockInfo,
-} = require("./data-store");
+const { getBlockInfo, getEvents, getTransactions } = require("./chain-queryer");
+const { processBlockInfo } = require("./data-process");
+const { saveBlockInfo } = require("./data-store");
 
 async function main() {
   console.log("sync block info starting");
   const platform = os.platform();
   console.log("os platform", platform);
-  console.log("waiting init connect chain...");
+  // console.log("waiting init connect chain...");
+  const spinner = createSpinner("connecting to the chain").start();
   common.useTime("init polkdot chain rpc", 1);
   api = await init();
   global.api = api;
+  spinner.success({ text: 'connect successful!'});
   common.useTime("init polkdot chain rpc");
   console.log("starting sync block info...");
-  
 
   let currHeight = 13780000;
-  let maxHeight=await api.query.system.number();
-  maxHeight=maxHeight.toNumber();
-  if(currHeight>maxHeight){
-    currHeight=maxHeight-1000;
+  let maxHeight = await api.query.system.number();
+  maxHeight = maxHeight.toNumber();
+  if (currHeight > maxHeight) {
+    currHeight = maxHeight - 1000;
   }
-  
+
   api.rpc.chain.subscribeNewHeads((header) => {
     maxHeight = header.number.toNumber();
     console.log(`maxHeight ${header.number}`);
@@ -79,12 +73,23 @@ async function loopGetBlock(start, end) {
     try {
       let { blockInfo, hash } = await getBlockInfo(i);
       let { blockHeight, exists } = await processBlockInfo(blockInfo);
-      if(exists){
+      if (exists) {
         continue;
       }
       let events = await getEvents(hash);
-      let { timestamp, txCount, eventCount }=await getTransactions(blockInfo,blockHeight,events);
-      await saveBlockInfo(hash, blockHeight, blockInfo, timestamp, txCount, eventCount);
+      let { timestamp, txCount, eventCount } = await getTransactions(
+        blockInfo,
+        blockHeight,
+        events
+      );
+      await saveBlockInfo(
+        hash,
+        blockHeight,
+        blockInfo,
+        timestamp,
+        txCount,
+        eventCount
+      );
     } catch (e) {
       api = await init();
       console.error(e);

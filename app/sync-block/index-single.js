@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-12 15:39:39
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-01-16 10:37:05
+ * @LastEditTime: 2023-02-01 10:41:33
  * @description: about
  * @author: chenbinfa
  */
@@ -87,17 +87,20 @@ async function saveBlock(
   // let signerAccount = src.header.author || src.header.authorFromMapping;
   // signerAccount = signerAccount.toHuman();
   showLog("dalBlock.insert", blockHeight);
-  let result = await dalBlock.insert({
-    hash,
-    // signerAccount,
-    parentHash: blockInfo.header.parentHash,
-    blockHeight,
-    txCount,
-    eventCount,
-    // stateRoot: blockInfo.header.stateRoot,
-    // extrinsicsRoot: blockInfo.header.extrinsicsRoot,
-    timestamp,
-  });
+  let result = await dalBlock.insert(
+    {
+      hash,
+      // signerAccount,
+      parentHash: blockInfo.header.parentHash,
+      blockHeight,
+      txCount,
+      eventCount,
+      // stateRoot: blockInfo.header.stateRoot,
+      // extrinsicsRoot: blockInfo.header.extrinsicsRoot,
+      timestamp,
+    },
+    { blockHeight }
+  );
   showLog("dalBlock.insert end", blockHeight);
   // console.log(result);
 }
@@ -349,7 +352,7 @@ function sendLog(msg, data) {
   wsHelper.send("log", "append", data);
 }
 
-global.showLog=showLog;
-global.sendLog=sendLog;
+global.showLog = showLog;
+global.sendLog = sendLog;
 // main();
 module.exports = main;
