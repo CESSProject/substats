@@ -101,13 +101,12 @@ async function saveTx(blockHash, blockHeight, src, events) {
           showLog("!entity.method || !entity.section", entity);
           continue;
         }
-        if (!result) {
+        if (!result&&entity.isSigned) {
           showLog("dalTransaction.insert ", index, entity);
           result = await dalTransaction.insert(entity);
           txIds.push(result.id || result.lastID);
           if (!result.id) {
             showLog(
-              "*****************insert double**********************",
               entity
             );
           }

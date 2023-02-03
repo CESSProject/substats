@@ -3,14 +3,14 @@
  * @Autor: fage
  * @Date: 2022-07-11 15:11:36
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-02-02 16:59:08
+ * @LastEditTime: 2023-02-03 16:34:03
  */
 "use strict";
 const path = require("path");
 module.exports = {
   sitename: "CESS Brower",
   wsnode: {
-    nodeURL: "wss://rpc.dotters.network/polkadot", // config the block chain node rpc websocket url
+    nodeURL: "wss://1rpc.io/dot", // config the block chain node rpc websocket url
     // nodeURL: "wss://rococo-contracts-rpc.polkadot.io",//rococo network rpc 
     // nodeURL: "wss://1rpc.io/ksm",    //kusama network rpc
     // nodeURL: "wss://1rpc.io/dot",    //polkadot network rpc

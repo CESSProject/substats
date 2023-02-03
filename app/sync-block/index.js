@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-12 15:39:39
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-02-01 10:48:04
+ * @LastEditTime: 2023-02-03 16:32:38
  * @description: about
  * @author: chenbinfa
  */
@@ -36,12 +36,9 @@ async function main() {
   common.useTime("init polkdot chain rpc");
   console.log("starting sync block info...");
 
-  let currHeight = 13780000;
   let maxHeight = await api.query.system.number();
   maxHeight = maxHeight.toNumber();
-  if (currHeight > maxHeight) {
-    currHeight = maxHeight - 1000;
-  }
+  let currHeight = maxHeight - 1000;
 
   api.rpc.chain.subscribeNewHeads((header) => {
     maxHeight = header.number.toNumber();
