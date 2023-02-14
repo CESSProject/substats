@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-26 14:52:51
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-02-03 17:28:37
+ * @LastEditTime: 2023-02-14 14:34:13
  * @description: about
  * @author: chenbinfa
  */
@@ -59,7 +59,7 @@ const SearchBar = ({ className, stakingPer }) => {
 					type: "element-active"
 				}
 			],
-			color: ['#e6007a','#000000'],
+			color: ['rgba(230, 0, 122, 1)','#000000'],
 			statistic: {
 				title: false,
 				content: {

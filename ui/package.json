@@ -30,12 +30,7 @@
   },
   "scripts": {
     "start": "cross-env REACT_APP_ENVIRONMENT=development craco start",
-    "build": "cross-env REACT_APP_ENVIRONMENT=production craco build",
-    "build:test": "cross-env REACT_APP_ENVIRONMENT=test craco build",
-    "test": "craco test",
-    "test2": "react-scripts test",
-    "eject": "react-scripts eject",
-    "prepare": "husky install"
+    "build": "cross-env REACT_APP_ENVIRONMENT=production craco build"
   },
   "eslintConfig": {
     "extends": [

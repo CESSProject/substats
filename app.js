@@ -71,7 +71,7 @@ app.use(
 // will can get req.body object
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false, limit: "10000kb" })); //max req size
-// app.use(express.static(path.join(__dirname, "ui/build")));
+app.use(express.static(path.join(__dirname, "ui/build")));
 app.use(express.static(path.join(__dirname, "public"))); //config the static dir
 
 app.use("/", routes); //base path

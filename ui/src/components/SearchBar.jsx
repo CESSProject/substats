@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-26 14:52:51
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-02-02 14:31:09
+ * @LastEditTime: 2023-02-14 15:29:05
  * @description: about
  * @author: chenbinfa
  */
@@ -29,6 +29,7 @@ import _ from "lodash";
 import moment from "moment";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import webconfig from "@/webconfig";
 
 const { Option } = Select;
 const { Search } = Input;
@@ -39,52 +40,8 @@ const SearchBar = ({ className }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchType, setSearchType] = useState("All");
   const [loading, setLoading] = useState(false);
-  const [space, setSpace] = useState({
-    used: 0,
-    idle: 0,
-    total: 0,
-    totalGiB: 0,
-  });
+
   const navigate = useNavigate();
-
-  async function getStore() {
-    if (ignore || loading) return;
-    setLoading(true);
-    let result = await storageAJAX({ ac1: "sminer", ac2: "totalServiceSpace" });
-    if (result.msg != "ok") {
-      setLoading(false);
-      return;
-    }
-    const used = result.data;
-    if (ignore) {
-      setLoading(false);
-      return;
-    }
-    result = await storageAJAX({ ac1: "sminer", ac2: "totalIdleSpace" });
-    setLoading(false);
-    if (result.msg != "ok") {
-      return;
-    }
-    const idle = result.data;
-    if (ignore) return;
-    const total = used + idle;
-    const totalGiB = total / 1073741824;
-    console.log("totalGiB", totalGiB);
-    setSpace({
-      used,
-      idle,
-      total,
-      totalGiB,
-    });
-  }
-
-  useEffect(() => {
-    ignore = false;
-    getStore();
-    return () => {
-      ignore = true;
-    };
-  }, []);
 
   useEffect(() => {
     let pathArr = window.location.pathname.split("/");
@@ -110,32 +67,20 @@ const SearchBar = ({ className }) => {
       setKeyword(e.target.value);
     }
     let type = getSearchType();
-    setSearchType(type);
     let url = "/" + type.toLowerCase() + "/" + keyword;
     navigate(url);
   };
   const getSearchType = () => {
     let type = "Transfer";
-    if (keyword.indexOf("cX") == 0) {
+    if (keyword.length == 48) {
       type = "Account";
     } else if (keyword.length < 15 && !isNaN(keyword)) {
       type = "Block";
     }
     return type;
   };
-  const onChangeType = (value) => {
-    setSearchType(value);
-  };
   const onChangeKeyword = (e) => {
     setKeyword(e.target.value);
-  };
-
-  const getPrice = (store, type) => {
-    let v = 1000 + (store * 10000) / space.totalGiB;
-    if (type == 2) {
-      v = v / store;
-    }
-    return v.toFixed(2) + "  DOT";
   };
 
   return (
@@ -143,7 +88,7 @@ const SearchBar = ({ className }) => {
       <div className="search-content">
         <div className="big-title block">
           <div className="big-title-txt block">
-            The Polkadot Blockchain Explorer
+            The {webconfig.name} Blockchain Explorer
           </div>
         </div>
         <Search
@@ -172,7 +117,7 @@ const SearchBar = ({ className }) => {
 };
 
 export default React.memo(styled(SearchBar)`
-  background-color: #e6007a;
+  background-color: rgba(230, 0, 122, 1);
   width: 100%;
   display: block;
   overflow: hidden;

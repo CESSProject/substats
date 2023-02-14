@@ -31,7 +31,14 @@ We have designed a set of explorer modular components for the Substrate ecosyste
 - Database:Mysql/SQLite3
 - Polkadot.js
 
-### b. Tool Versions
+
+### b. Front-End UI
+
+- React.js
+- Ant-design
+- Less
+
+### c. Tool Versions
 
 - node             v16.14+
 - npm              v9.2.0+
@@ -66,7 +73,14 @@ cd substats
 npm install // or yarn
 ```
 
-### 3). Config
+### 3). Install ui
+
+```bash
+cd ui
+npm install // or yarn
+```
+
+### 4). Config
 
 This project supports most of the chain of polkadot ecosystem. You can switch as long as you modify the RPC node address in the configuration file :
 
@@ -82,18 +96,24 @@ npm run test
 
 ## 5. Run guide
 
-### 1). Run API server
+
+### 1). Build front-end page
+
+```bash
+npm run build
+```
+
+> Automatically generate html files to the build folder
+
+### 2). Run API server
 
 ```bash
 npm start  //will use the sqlite3 database.
-
-// or run whith custom database config file
-npm start ./mysql-config.json    //will use the mysql database.
 ```
 
 > It will listen on the port 8080
 
-> Note : If npm start with a MySQL account config file, use MySQL , else use the sqlite3 database.
+> Open the page in browser:  [http://localhost:8080/](http://localhost:8080/)
 
 
 ## 6. Inspect the system status
@@ -105,11 +125,11 @@ Open the page in browser:
 ## 7. Project file structure
 
 ```bash
-├── app/                #  timer app
-├── package.json        #  package
+├── app/                # timer app
+├── package.json        # package
 ├── bll/                # business
 ├── controls/           # control layer
-├── dal/                # data Access Layer
+├── dal/                # data access layer
 ├── routes/             # server routes
 ├── .gitignore          # git ignore file
 ├── app.js              # server main
@@ -143,4 +163,4 @@ docker compose -f demo/docker-compose.yml up -d
 docker-compose -f demo/docker-compose.yml up -d
 
 ```
-* Open [this page](http://localhost:8080/system-status.html) in browser
+* Open [this page](http://localhost:8080) in browser

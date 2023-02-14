@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./app",
+    "start:ui": "cd ui && npm start",
+    "build:ui": "cd ui && npm run build",
     "start:mysql": "npm start ./mysql-config.json",
     "app": "node ./app/index.js",
     "reset": "node ./app/db-batch/truncate-block-list.js",

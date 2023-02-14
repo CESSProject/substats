@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-07 14:36:09
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-02-13 19:22:16
+ * @LastEditTime: 2023-02-14 15:34:19
  */
 import styled from "styled-components";
 import React, { useRef, useState, useEffect, useMemo } from "react";
@@ -38,6 +38,7 @@ import TransactionTrend from "./components/TransactionTrend";
 import { isMobile } from "@utils";
 import subData from "@services/subdata";
 import queryDB from "@services/queryDB";
+import webconfig from "@/webconfig";
 import {
   formatterCurrency,
   formatterCurrencyStr,
@@ -215,8 +216,7 @@ const Home = ({ ...props }) => {
   return (
     <div className="containner-in">
       <div className="top-price-box"></div>
-      {isM ? (
-        <div>
+      <div>
           <div className="chart-box block">
             <Overview className="chart-left myRadius" />
             <div className="chart-right myRadius">
@@ -248,7 +248,7 @@ const Home = ({ ...props }) => {
                 <div className="l-box-1-top-left">
                   <div className="box-title">Total Staking Rate</div>
                   <span className="main-font">{stakingPer}%</span>
-                  <label>{staking}M DOT</label>
+                  <label>{staking}M {webconfig.tokenName}</label>
                 </div>
                 <div className="l-box-1-top-right">
                   <StorageChart stakingPer={stakingPer} />
@@ -268,60 +268,6 @@ const Home = ({ ...props }) => {
             </div>
           </div>
         </div>
-      ) : (
-        <div>
-          <div className="chart-box block">
-            <Overview className="chart-left myRadius" />
-            <div className="chart-right myRadius">
-              <div className="box-title">Network Overview</div>
-              <div className="box-con">
-                <div className="block-1">
-                  <div>Finalized Block</div>
-                  <span>{blockHeight}</span>
-                  <div style={{ fontSize: 18, color: "red" }}>{timeSec}</div>
-                </div>
-                <div className="block-1">
-                  <div>Transaction</div>
-                  <span>{totalTransactions}</span>
-                </div>
-                <div className="block-1">
-                  <div>Total issuance</div>
-                  <span>{totalIssuance}</span>
-                </div>
-                <div className="block-1">
-                  <div>Validators</div>
-                  <span>{validators}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="list-box block">
-            <div className="l-box-1">
-              <div className="l-box-1-top">
-                <div className="l-box-1-top-left">
-                  <div className="box-title">Total Staking Rate</div>
-                  <span className="main-font">{stakingPer}%</span>
-                  <label>{staking}M DOT</label>
-                </div>
-                <div className="l-box-1-top-right">
-                  <StorageChart stakingPer={stakingPer} />
-                </div>
-              </div>
-              <div className="l-box-1-bottom">
-                <TransactionTrend />
-              </div>
-            </div>
-            <div className="l-box-2">
-              <div className="l-box-2-1">
-                <Blocks />
-              </div>
-              <div className="l-box-2-1">
-                <Transactions />
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
