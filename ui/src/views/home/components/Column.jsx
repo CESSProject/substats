@@ -49,6 +49,6 @@ export default React.memo(styled(SearchBar)`
     background-color: #ffc7e4;
   }
   .column:hover {
-    background-color: rgba(230, 0, 122, 1);
+    background-color: var(--theme-color);
   }
 `);

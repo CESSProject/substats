@@ -25,7 +25,7 @@ module.exports = {
 		publicPath: "/",
 		plugins: [
 			// new BundleAnalyzerPlugin(),
-			// 打压缩包
+			// zip and package
 			...whenProd(
 				() => [
 					new CompressionWebpackPlugin({
@@ -34,7 +34,7 @@ module.exports = {
 						threshold: 1024,
 						minRatio: 0.8
 					}),
-					// 去除 console debugger warning， 关闭 sourceMap
+					// clear console debugger warning， close sourceMap
 					new UglifyJsPlugin({
 						uglifyOptions: {
 							warnings: false,
@@ -60,22 +60,22 @@ module.exports = {
 			)
 		]
 	},
-	plugins: [
-		{
-			plugin: CracoLessPlugin,
-			options: {
-				lessLoaderOptions: {
-					lessOptions: {
-						// 所有公共样式在此处配置
-						modifyVars: {
-							"@primary-color": "#e6007a"//"#1890ff"
-						},
-						javascriptEnabled: true
-					}
-				}
-			}
-		}
-	],
+	// plugins: [
+	// 	{
+	// 		plugin: CracoLessPlugin,
+	// 		options: {
+	// 			lessLoaderOptions: {
+	// 				lessOptions: {
+	// 					// public style
+	// 					modifyVars: {
+	// 						"var(--theme-color)": "#e6007a"//"#1890ff"
+	// 					},
+	// 					javascriptEnabled: true
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+	// ],
 	eslint: {
 		enable: false
 	}

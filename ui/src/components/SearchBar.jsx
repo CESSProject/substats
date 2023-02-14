@@ -117,7 +117,7 @@ const SearchBar = ({ className }) => {
 };
 
 export default React.memo(styled(SearchBar)`
-  background-color: rgba(230, 0, 122, 1);
+  background-color: var(--theme-color);
   width: 100%;
   display: block;
   overflow: hidden;

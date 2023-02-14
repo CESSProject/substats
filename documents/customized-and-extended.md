@@ -1,7 +1,7 @@
 
 # How to customized and extended components
 
-目前我们源码默认展示了polkadot链的数据，你也可以修改成其它链的浏览器，具体操作如下：
+目前我们的源码默认作为polkadot链的区块链浏览器，你也可以修改成其它链的浏览器，具体操作如下：
 
 ## 1. 修改后端服务RPC节点链接
 
@@ -9,7 +9,7 @@ This project supports most of the chain of polkadot ecosystem. You can switch as
 
 [/webconfig.js](https://github.com/CESSProject/substats/blob/master/webconfig.js)
 
-And node RPC url config at :<https://github.com/CESSProject/substats/blob/a20719f77624a3f2658a3562cf041192500b7a89/webconfig.js#L13>
+And node RPC url config at :<br /> <https://github.com/CESSProject/substats/blob/a20719f77624a3f2658a3562cf041192500b7a89/webconfig.js#L13>
 
 ## 2. 清空数据库
 
@@ -37,9 +37,11 @@ npm run reset
 
 #### a. 修改主色调
 
-当前主色调为：rgba(230, 0, 122, 1)
+当前主色调为：#e6007a
 
-你可以在 /ui 文件夹中批量查找并替换成其它颜色
+你可以在这个文件中修改成其它颜色
+
+[/ui/src/index.less#L14](https://github.com/lanmeng656/substats/blob/master/ui/src/index.less#L14)
 
 #### b. 修改LOGO
 
@@ -53,7 +55,11 @@ npm run reset
 
 链名称配置文件：
 ```bash
-/ui/src/webconfig.js
+# /ui/src/webconfig.js
+export default { 
+    name:"Polkadot", # blockchain name
+    tokenName:'DOT'  # token name
+ };
 ```
 把名称修改成对应链的名称即可
 

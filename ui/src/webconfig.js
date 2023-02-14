@@ -1,4 +1,4 @@
 export default { 
     name:"Polkadot",
-    tokenName:'DOT222'
+    tokenName:'DOT'
  };

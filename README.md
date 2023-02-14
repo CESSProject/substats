@@ -73,7 +73,7 @@ cd substats
 npm install // or yarn
 ```
 
-### 3). Install ui
+### 3). Install UI package
 
 ```bash
 cd ui
@@ -100,6 +100,7 @@ npm run test
 ### 1). Build front-end page
 
 ```bash
+cd ui
 npm run build
 ```
 
@@ -119,7 +120,7 @@ npm start  //will use the sqlite3 database.
 ## 6. Inspect the system status
 Open the page in browser: 
 
-[http://localhost:8080/system-status.html]([http://localhost:8080/system-status.html])
+[http://localhost:8080/system-status.html](http://localhost:8080/system-status.html)
 
 
 ## 7. Project file structure
@@ -131,6 +132,7 @@ Open the page in browser:
 ├── controls/           # control layer
 ├── dal/                # data access layer
 ├── routes/             # server routes
+├── ui/                 # ui
 ├── .gitignore          # git ignore file
 ├── app.js              # server main
 └── web.config          # server config

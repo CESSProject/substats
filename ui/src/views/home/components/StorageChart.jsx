@@ -59,7 +59,7 @@ const SearchBar = ({ className, stakingPer }) => {
 					type: "element-active"
 				}
 			],
-			color: ['rgba(230, 0, 122, 1)','#000000'],
+			color: ['#e6007a','#000000'],
 			statistic: {
 				title: false,
 				content: {

@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-26 14:52:51
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-02-03 15:54:24
+ * @LastEditTime: 2023-02-14 17:19:32
  * @description: about
  * @author: chenbinfa
  */
@@ -92,7 +92,7 @@ const SearchBar = ({ className, space }) => {
       // type: 'timeCat',
       tickCount: 5,
     },
-    color: "rgba(230, 0, 122, 1)",
+    color: "#e6007a",
     point: {
       size: 3,
       shape: "circular",

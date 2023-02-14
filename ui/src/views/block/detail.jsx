@@ -563,7 +563,7 @@ export default styled(Main)`
       overflow: hidden;
       color: #aaa;
       .curr {
-        color: rgba(230, 0, 122, 1);
+        color: var(--theme-color);
       }
       span {
         padding: 20px;
