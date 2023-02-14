@@ -11,7 +11,7 @@ This project supports most of the chain of polkadot ecosystem. You can switch as
 
 And node RPC url config at :<br /> <https://github.com/CESSProject/substats/blob/a20719f77624a3f2658a3562cf041192500b7a89/webconfig.js#L13>
 
-## 2. 清空数据库
+## 2. Clear database table
 
 ``` bash
 npm run reset
@@ -41,9 +41,9 @@ npm run reset
 
 你可以在这个文件中修改成其它颜色
 
-[/ui/src/index.less#L14](https://github.com/lanmeng656/substats/blob/master/ui/src/index.less#L14)
+[/ui/src/index.less#L11](https://github.com/CESSProject/substats/blob/master/ui/src/index.less#L11)
 
-#### b. 修改LOGO
+#### b. 更换LOGO
 
 修改以下logo图片文件：
 ```bash
@@ -72,7 +72,7 @@ components位于以下文件夹：
 你可以根据你的想法随心欲的修改，当然，前提是需要有一定的前端基础。
 
 
-## 4. build前端
+## 4. Build frond-end project.
 
 修改完上面这些后，需要重新build才能生效
 
@@ -83,13 +83,13 @@ npm run build:ui
 ```
 
 
-## 5. 运行
+## 5. Run
 
 ```bash
 npm start
 ```
 
-## 6. 查看页面
+## 6. View
 
 Open the page in browser:  [http://localhost:8080/]([http://localhost:8080/])
 
