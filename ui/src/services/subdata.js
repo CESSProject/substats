@@ -3,10 +3,11 @@
  * @Autor: fage
  * @Date: 2022-07-12 11:21:36
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-02-15 17:27:38
+ * @LastEditTime: 2023-02-15 17:53:17
  * @description: about
  * @author: chenbinfa
  */
+import request from "@utils/request";
 const wsAPI = process.env.REACT_APP_BASE_WS + "";
 let socket = null;
 let timeout = null;
@@ -29,7 +30,6 @@ function getWsAPI() {
 }
 function connect() {
   if (!socket) {
-    console.log(getWsAPI(), getWsAPI());
     socket = new WebSocket(getWsAPI());
     socket.addEventListener("open", function (event) {
       console.log("socket is open");
@@ -37,6 +37,7 @@ function connect() {
     });
     socket.addEventListener("close", function (event) {
       console.log("socket is close");
+      return connectHttp();
       socket = null;
       timeout = setTimeout(function () {
         try {
@@ -81,11 +82,45 @@ function addEvent(e) {
   }
   events.push(e);
   connect();
+  // if (window.location.protocol == "http:") {
+  //   connect();
+  // } else {
+  //   connectHttp();
+  // }
 }
 function removeEvent(id) {
   const i = events.findIndex((t) => t.id == id);
   if (i > -1) {
     events.splice(i, 1);
     console.log("remove event complect ", id, " events.length", events.length);
+  }
+}
+
+function connectHttp() {
+  setInterval(getBlockHeight, 1000);
+}
+let blockHeight = 0;
+async function getBlockHeight() {
+  let data = {
+    ac1: "system",
+    ac2: "number",
+  };
+  let result = await request.post("/api/storage/query", { data });
+  if (result.msg == "ok") {
+    if (blockHeight == result.data) {
+      return;
+    }
+    blockHeight = result.data;
+    const elist = events.filter((t) => t.name == "block-new" && t.e);
+    if (elist.length == 0) {
+      return;
+    }
+    for (let o of elist) {
+      try {
+        o.e({ blockHeight });
+      } catch (e) {
+        console.log(e);
+      }
+    }
   }
 }
