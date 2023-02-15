@@ -78,14 +78,16 @@ app.use("/", routes); //base path
 app.use("/api", api); //api router
 app.ws("/ws", ws); // websocker router
 app.use(function (req, res, next) {
-  var err = new Error("Not Found");
-  err.status = 404;
-  next(err);
+  // var err = new Error("Not Found");
+  // err.status = 404;
+  // next(err);
+  res.sendFile(path.join(__dirname, "ui/build")+'/index.html');
 });
 app.use(function (err, req, res, next) {
   if (err == 404) {
     err = new Error("404 not found");
-    err.status = 404;
+    
+    return;
   } else if (typeof err != "object") {
     err = new Error(err);
   }
