@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-12 11:21:36
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-02-15 17:53:17
+ * @LastEditTime: 2023-02-15 17:57:12
  * @description: about
  * @author: chenbinfa
  */
@@ -34,6 +34,9 @@ function connect() {
     socket.addEventListener("open", function (event) {
       console.log("socket is open");
       clearInterval(timeout);
+    });
+    socket.addEventListener("error", function (event) {
+      connectHttp();
     });
     socket.addEventListener("close", function (event) {
       console.log("socket is close");
@@ -96,10 +99,14 @@ function removeEvent(id) {
   }
 }
 
+let blockHeight = 0,
+  runing = false;
 function connectHttp() {
+  if (runing) return;
+  runing = true;
   setInterval(getBlockHeight, 1000);
 }
-let blockHeight = 0;
+
 async function getBlockHeight() {
   let data = {
     ac1: "system",
