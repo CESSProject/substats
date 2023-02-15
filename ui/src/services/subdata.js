@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-12 11:21:36
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-02-15 17:25:03
+ * @LastEditTime: 2023-02-15 17:27:38
  * @description: about
  * @author: chenbinfa
  */
@@ -20,7 +20,7 @@ function getWsAPI() {
   if (wsAPI.indexOf("ws:") != -1) {
     return wsAPI;
   }
-  let wsProtocol = "ws:";
+  let wsProtocol = "wss:";
   if (window.location.protocol == "http:") {
     wsProtocol = "ws:";
   }
