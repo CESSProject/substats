@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-07 14:36:09
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-02-02 17:42:06
+ * @LastEditTime: 2023-02-15 14:07:44
  */
 import React, { useRef, useState, useEffect } from "react";
 import {
@@ -41,6 +41,7 @@ import { NavLink, Outlet, useParams } from "react-router-dom";
 import { ThTable } from "@/components/ThTable";
 import { isMobile } from "@utils";
 import MList from "@/components/mobile/MList";
+import webconfig from "@/webconfig";
 const isM = isMobile();
 
 const { Option } = Select;
@@ -93,21 +94,21 @@ const columns = [
 		},
 		sorter: true
 	},
-	// {
-	// 	title: "DestAccount",
-	// 	dataIndex: "destAccount",
-	// 	width: "10%",
-	// 	textWrap: "word-break",
-	// 	ellipsis: true,
-	// 	showType: "copy"
-	// },
 	{
-		title: "Amount($DOT)",
-		dataIndex: "amount",
-		width: "5%",
-		sorter: true,
-		showType: "currency-qianfen"
+		title: "DestAccount",
+		dataIndex: "destAccount",
+		width: "10%",
+		textWrap: "word-break",
+		ellipsis: true,
+		showType: "copy"
 	},
+	// {
+	// 	title: "Amount",
+	// 	dataIndex: "amount",
+	// 	width: "5%",
+	// 	sorter: true,
+	// 	showType: "currency-qianfen"
+	// },
 	{
 		title: "Time",
 		dataIndex: "timestamp",
@@ -119,7 +120,7 @@ const columns = [
 ];
 if (isM) {
 	columns[4].title = "Amount";
-	columns[4].tpl = "{amount} ($DOT)";
+	columns[4].tpl = "{amount} ("+webconfig.tokenName+")";
 }
 
 const Main = ({ ...propsS }) => {

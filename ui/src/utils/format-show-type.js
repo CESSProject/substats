@@ -34,6 +34,7 @@ import _ from "lodash";
 import moment from "moment";
 import copy from "copy-to-clipboard";
 import AccountIcon from "@/components/AccountIcon";
+import webconfig from "@/webconfig";
 import {
 	formatterCurrency,
 	formatterCurrencyMill,
@@ -184,7 +185,7 @@ function formatOne(column) {
 				return (
 					<>
 						<span className="money">{text && text.money}</span>
-						<span className="suffix">{text && text.suffix} DOT</span>
+						<span className="suffix">{text && text.suffix} {webconfig.tokenName}</span>
 					</>
 				);
 			};

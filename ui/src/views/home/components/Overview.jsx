@@ -15,6 +15,7 @@ import { Line } from "@ant-design/plots";
 import queryDB from "@services/queryDB";
 import "@ant-design/flowchart/dist/index.css";
 import Column from "./Column";
+import webconfig from "@/webconfig";
 let ignore = false;
 
 const SearchBar = ({ className, space }) => {
@@ -126,7 +127,7 @@ const SearchBar = ({ className, space }) => {
       <div className="box-title">Overview</div>
       <div className="box1">
         <div className="box1-left">
-          <div className="block">Polkadot / USDT</div>
+          <div className="block">{webconfig.name} / USDT</div>
           <span className="block">{lastItem.dataValue}</span>
           <label className="block">{lastItem.per}%</label>
         </div>

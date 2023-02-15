@@ -2,13 +2,14 @@
  * @Description:
  * @Autor: fage
  * @Date: 2022-08-09 10:10:31
- * @LastEditors: chenbinfa
- * @LastEditTime: 2022-08-16 17:52:58
+ * @LastEditors: lanmeng656 lanmeng656@google.com
+ * @LastEditTime: 2023-02-15 14:04:07
  * @description: miner list
  * @author: chenbinfa
  */
 import storageAJAX from "@services/storage";
 import { NavLink } from "react-router-dom";
+import webconfig from "@/webconfig";
 import queryDB from "@services/queryDB";
 
 export default { loadMiners, loadOneMiner, getColumns };
@@ -120,7 +121,7 @@ function getColumns(type = "table") {
 			sorter: true
 		},
 		{
-			title: "Mining reward($DOT)",
+			title: "Mining reward("+webconfig.tokenName+")",
 			dataIndex: "totalReward",
 			width: "20%",
 			showType: "currency-qianfen",

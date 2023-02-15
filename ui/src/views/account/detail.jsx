@@ -2,8 +2,8 @@
  * @Description:
  * @Autor: fage
  * @Date: 2022-07-26 17:49:48
- * @LastEditors: chenbinfa
- * @LastEditTime: 2022-08-17 11:00:46
+ * @LastEditors: lanmeng656 lanmeng656@google.com
+ * @LastEditTime: 2023-02-15 14:03:12
  * @description: about
  * @author: chenbinfa
  */
@@ -45,6 +45,7 @@ import BreadcrumbBar from "@/components/BreadcrumbBar";
 import { ThTable } from "@/components/ThTable";
 import MList from "@/components/mobile/MList";
 import miner from "@services/miner";
+import webconfig from "@/webconfig";
 const isM = isMobile();
 
 const { Option } = Select;
@@ -201,7 +202,7 @@ function Main({ className }) {
 				showType: "copy"
 			},
 			{
-				title: "Balances($DOT)",
+				title: "Balances("+webconfig.tokenName+")",
 				dataIndex: "amount",
 				width: "5%",
 				showType: "currency-qianfen"
@@ -290,7 +291,7 @@ function Main({ className }) {
 					<div className="table-content">
 						<Descriptions bordered column={1}>
 							<Descriptions.Item label="AccountID">{account}</Descriptions.Item>
-							<Descriptions.Item label="Balances($DOT)">{formatterCurrencyStr2(detail.amount)}</Descriptions.Item>
+							<Descriptions.Item label={"Balances("+webconfig.tokenName+")"}>{formatterCurrencyStr2(detail.amount)}</Descriptions.Item>
 							<Descriptions.Item label="Transfers">{detail.txCount}</Descriptions.Item>
 							<Descriptions.Item label="IsMiner">{detail.isMiner == 1 ? "Yes" : "No"}</Descriptions.Item>
 						</Descriptions>

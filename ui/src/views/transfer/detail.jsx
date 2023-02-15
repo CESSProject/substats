@@ -40,6 +40,7 @@ import { formatArr } from "@/utils/format-show-type";
 import moment from "moment";
 import copy from "copy-to-clipboard";
 import BreadcrumbBar from "@/components/BreadcrumbBar";
+import webconfig from "@/webconfig";
 
 const { Option } = Select;
 const { Column, ColumnGroup } = Table;
@@ -157,7 +158,7 @@ function Main({ className }) {
 				showType: "copy"
 			},
 			{
-				title: "Amount($DOT)",
+				title: "Amount("+webconfig.tokenName+")",
 				dataIndex: "amount",
 				width: "5%",
 				showType: "currency-qianfen"

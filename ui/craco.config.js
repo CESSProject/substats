@@ -60,22 +60,22 @@ module.exports = {
 			)
 		]
 	},
-	// plugins: [
-	// 	{
-	// 		plugin: CracoLessPlugin,
-	// 		options: {
-	// 			lessLoaderOptions: {
-	// 				lessOptions: {
-	// 					// public style
-	// 					modifyVars: {
-	// 						"var(--theme-color)": "#e6007a"//"#1890ff"
-	// 					},
-	// 					javascriptEnabled: true
-	// 				}
-	// 			}
-	// 		}
-	// 	}
-	// ],
+	plugins: [
+		{
+			plugin: CracoLessPlugin,
+			options: {
+				lessLoaderOptions: {
+					lessOptions: {
+						// public style
+						modifyVars: {
+							"var(--theme-color)": "#e6007a"//"#1890ff"
+						},
+						javascriptEnabled: true
+					}
+				}
+			}
+		}
+	],
 	eslint: {
 		enable: false
 	}

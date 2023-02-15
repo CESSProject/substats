@@ -1,4 +1,5 @@
 import _ from "lodash";
+import webconfig from "@/webconfig";
 
 /**
  * formatter file size
@@ -57,14 +58,14 @@ const formatterCurrency = (coin) => {
   if (_.isString(coin)) {
     coin = _.toNumber(coin);
   }
-  if (coin == 0) return { money: "0", suffix: "DOT" };
+  if (coin == 0) return { money: "0", suffix: webconfig.tokenName };
   let k = 1000;
   let currencyStr = [
     "PICO",
     "NANO",
     "MICRO",
     "MILLI",
-    "DOT",
+    webconfig.tokenName,
     "KILO",
     "MILL",
     "BILL",
@@ -94,14 +95,14 @@ const formatterCurrencyStr = (coin) => {
   if (_.isString(coin)) {
     coin = _.toNumber(coin);
   }
-  if (coin == 0) return "0 DOT";
+  if (coin == 0) return "0 "+webconfig.tokenName;
   let k = 1000;
   let currencyStr = [
     "PICO",
     "NANO",
     "MICRO",
     "MILLI",
-    "DOT",
+    webconfig.tokenName,
     "KILO",
     "MILL",
     "BILL",

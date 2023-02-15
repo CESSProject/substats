@@ -46,7 +46,7 @@ app.use(compression()); //gzip
 app.use(cors());
 
 // uncomment after placing your favicon in /public
-app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
+app.use(favicon(path.join(__dirname, "ui/build", "favicon.ico")));
 
 //add log with the format
 logger.token("time", function (req, res) {

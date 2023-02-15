@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-07 14:36:09
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-02-09 14:06:41
+ * @LastEditTime: 2023-02-15 15:27:50
  */
 import React, { useRef, useState, useEffect } from "react";
 import { DatePicker, Input, Menu, Modal, Button, Dropdown, Descriptions, Select, Space, Table, message, Tabs, Popconfirm, Checkbox, Card, Form } from "antd";
@@ -16,6 +16,7 @@ import queryDB from "@services/queryDB";
 import { formatterCurrency, formatterCurrencyStr2, formatterCurrencyStr, formatterSize, formatterSizeFromMB } from "@utils/format";
 import { ThTable } from "@/components/ThTable";
 import { isMobile } from "@utils";
+import webconfig from "@/webconfig";
 import MList from "@/components/mobile/MList";
 const isM = isMobile();
 
@@ -37,7 +38,7 @@ const columns = [
 		sorter: true
 	},
 	{
-		title: "Balances($DOT)",
+		title: "Balances("+webconfig.tokenName+")",
 		dataIndex: "amount",
 		width: "20%",
 		showType: "currency-qianfen",
@@ -52,7 +53,7 @@ const columns = [
 ];
 if (isM) {
 	columns[1].title = "Balances";
-	columns[1].tpl = "{amount} ($DOT)";
+	columns[1].tpl = "{amount} ("+webconfig.tokenName+")";
 }
 
 const Home = ({ ...props }) => {
