@@ -3,15 +3,15 @@
  * @Autor: fage
  * @Date: 2022-07-11 15:11:36
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-02-16 16:16:24
+ * @LastEditTime: 2023-02-16 17:05:07
  */
 "use strict";
 const path = require("path");
 module.exports = {
   sitename: "CESS Brower",
   wsnode: {
-    // nodeURL: "wss://1rpc.io/dot", // config the block chain node rpc websocket url
-    nodeURL: "wss://rpc.dotters.network/polkadot",
+    nodeURL:  "wss://1rpc.io/dot", // config the block chain node rpc websocket url
+    // nodeURL: "wss://rpc.dotters.network/polkadot",
     // nodeURL: "wss://polkadot-rpc.dwellir.com",
     // nodeURL: "wss://polkadot-rpc-tn.dwellir.com", 
     // nodeURL: "wss://polkadot.api.onfinality.io/public-ws", 
