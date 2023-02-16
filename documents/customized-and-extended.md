@@ -1,28 +1,28 @@
 
-# How to customized and extended components
+# How to customize and extend components
 
-目前我们的源码默认作为polkadot链的区块链浏览器，你也可以修改成其它链的浏览器，具体操作如下：
+Substats source code is based on polkadot. Developers can modify the code to get data from other chains.
 
-## 1. 修改后端服务RPC节点链接
+## 1. Modify the RPC node address
 
-This project supports most of the chain of polkadot ecosystem. You can switch as long as you modify the RPC node address in the configuration file :
+This project supports most of the chain of polkadot ecosystem. Developers can modify the RPC node address in the configuration file:
 
 [/webconfig.js](https://github.com/CESSProject/substats/blob/master/webconfig.js)
 
-And node RPC url config at :<br /> <https://github.com/CESSProject/substats/blob/a20719f77624a3f2658a3562cf041192500b7a89/webconfig.js#L13>
+RPC url config :<br /> <https://github.com/CESSProject/substats/blob/a20719f77624a3f2658a3562cf041192500b7a89/webconfig.js#L13>
 
-## 2. Clear database table
+## 2. Clean the database
 
 ``` bash
 npm run reset
 ```
 
-## 3. 修改前端UI
+## 3. Modify UI
 
-前端UI需要修改主色调，LOGO等
-当然也可以扩展现有组件
+The main color and the logo could be modified.
+At the same times, the components could be extended.
 
-源码位于 /ui/src/目录下
+The source code in /ui/src/
 
 ```bash
 ├──ui/
@@ -35,25 +35,25 @@ npm run reset
         └── views             # jsx pages
 ```
 
-#### a. 修改主色调
+#### a. Modify the main color
 
-当前主色调为：#e6007a
+The main color: #e6007a
 
-你可以在这个文件中修改成其它颜色
+You can modify the color in this file
 
-[/ui/src/index.less#L11](https://github.com/CESSProject/substats/blob/master/ui/src/index.less#L11)
+[/ui/src/index.less#L14](https://github.com/CESSProject/substats/blob/master/ui/src/index.less#L14)
 
-#### b. 更换LOGO
+#### b. Modify the project LOGO
 
-修改以下logo图片文件：
+Modify the logo image：
 ```bash
 /ui/public/favicon.ico
 /ui/public/img/logo.png
 /ui/public/img/u218.png
 ```
-#### c. 修改链名称
+#### c. Configure the name of chain
 
-链名称配置文件：
+Configure the name of chain in this file：
 ```bash
 # /ui/src/webconfig.js
 export default { 
@@ -61,24 +61,19 @@ export default {
     tokenName:'DOT'  # token name
  };
 ```
-把名称修改成对应链的名称即可
+#### d. Modify components
 
-#### d. 修改components
-
-components位于以下文件夹：
 ```bash
 /ui/src/components
 ```
-你可以根据你的想法随心欲的修改，当然，前提是需要有一定的前端基础。
+If you are familiar with front-end development, you can modify components according to your needs.
 
 
-## 4. Build frond-end project.
+## 4. build
 
-修改完上面这些后，需要重新build才能生效
+After modification, you need to build with the npm
 
 ```bash
-cd uid && npm run build
-//or 
 npm run build:ui
 ```
 
@@ -89,7 +84,7 @@ npm run build:ui
 npm start
 ```
 
-## 6. View
+## 6. Open the page
 
 Open the page in browser:  [http://localhost:8080/]([http://localhost:8080/])
 

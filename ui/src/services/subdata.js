@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-12 11:21:36
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-02-15 17:57:12
+ * @LastEditTime: 2023-02-16 10:37:31
  * @description: about
  * @author: chenbinfa
  */
@@ -84,12 +84,12 @@ function addEvent(e) {
     events.splice(i, 1);
   }
   events.push(e);
-  connect();
-  // if (window.location.protocol == "http:") {
-  //   connect();
-  // } else {
-  //   connectHttp();
-  // }
+  // connect();
+  if (window.location.protocol == "http:") {
+    connect();
+  } else {
+    connectHttp();
+  }
 }
 function removeEvent(id) {
   const i = events.findIndex((t) => t.id == id);
@@ -114,7 +114,7 @@ async function getBlockHeight() {
   };
   let result = await request.post("/api/storage/query", { data });
   if (result.msg == "ok") {
-    if (blockHeight == result.data) {
+    if (blockHeight == result.data) { 
       return;
     }
     blockHeight = result.data;

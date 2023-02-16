@@ -20,12 +20,12 @@ We have designed a set of explorer modular components for the Substrate ecosyste
 - [database-init](./documents/database-init.sql)
 - [testing-guide](./documents/testing-guide.md)
 
-
-
+### Online preview
+<https://polkadot.cess.cloud>
 
 ## 2. Technology stack used
 
-### a. Node.js API
+### a. Back-end Node.js webserver
 
 - Web Server:Express
 - Database:Mysql/SQLite3
@@ -48,36 +48,25 @@ We have designed a set of explorer modular components for the Substrate ecosyste
 
 ## 3. Install guide
 
-> Note : This system supports MySQL and sqlite3 databases. If npm start with a MySQL account config file, use MySQL else use sqlite3 database.
+> Note : This system supports MySQL and sqlite3 databases. If you want to use mysql database,please read the document [use-mysql-v5.7.md](./documents/use-mysql-v5.7.md) .
 
-### 1). Install database if use mysql
-- create a database with name "substats-w3f";
-- run the sql file [database-init](./documents/database-init.sql)
-- make database config file and content as:
-```javascript
-{
-  "connectionLimit": 10,
-  "host": "127.0.0.1",
-  "user": "substats",
-  "password": "kZtRazdBsxy3d2zs",
-  "port": 3306,
-  "database": "substats"
-}
+### 1). Clone code
+
+```bash
+git clone https://github.com/CESSProject/substats.git
+cd substats
 ```
 
 ### 2). Install API server
 
 ```bash
-git clone https://github.com/CESSProject/substats.git
-cd substats
-npm install // or yarn
+npm install
 ```
 
 ### 3). Install UI package
 
 ```bash
-cd ui
-npm install // or yarn
+cd ui && npm install
 ```
 
 ### 4). Config
@@ -100,16 +89,15 @@ npm run test
 ### 1). Build front-end page
 
 ```bash
-cd ui
-npm run build
+cd ui && npm run build
 ```
 
 > Automatically generate html files to the build folder
 
-### 2). Run API server
+### 2). Run
 
 ```bash
-npm start  //will use the sqlite3 database.
+npm start
 ```
 
 > It will listen on the port 8080
@@ -117,13 +105,7 @@ npm start  //will use the sqlite3 database.
 > Open the page in browser:  [http://localhost:8080/](http://localhost:8080/)
 
 
-## 6. Inspect the system status
-Open the page in browser: 
-
-[http://localhost:8080/system-status.html](http://localhost:8080/system-status.html)
-
-
-## 7. Project file structure
+## 6. Project file structure
 
 ```bash
 ├── app/                # timer app
@@ -137,7 +119,7 @@ Open the page in browser:
 ├── app.js              # server main
 └── web.config          # server config
 ```
-## 8. Docker guide
+## 7. Docker guide
 
 You can build docker image and then run it or run image by docker compose directly.
 
