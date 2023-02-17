@@ -11,13 +11,17 @@ This project supports most of the chain of polkadot ecosystem. Developers can mo
 
 RPC url config :<br /> <https://github.com/CESSProject/substats/blob/a20719f77624a3f2658a3562cf041192500b7a89/webconfig.js#L13>
 
-## 2. Clean the database
+## 2. Modify the token price address
+<https://github.com/CESSProject/substats/blob/a20719f77624a3f2658a3562cf041192500b7a89/webconfig.js#L24>
+
+
+## 3. Clean the database
 
 ``` bash
 npm run reset
 ```
 
-## 3. Modify UI
+## 4. Modify UI
 
 The main color and the logo could be modified.
 At the same times, the components could be extended.

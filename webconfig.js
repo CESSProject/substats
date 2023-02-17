@@ -21,6 +21,7 @@ module.exports = {
   port: {
     http: 8080,//system run port
   },
+  tokenPriceAPI:'http://175.41.161.67:3008/api/v3/ticker?symbol=DOTUSDT',
   publicApi: {
     secret: "MA14BAHJ2JEASL",
   },

@@ -105,7 +105,7 @@ app.use(function (err, req, res, next) {
 global.wsClientList = []; //all websocker client
 initDotChain().then((t) => {
   // init the chain connect
-  syncBlockAPP();
+  // syncBlockAPP();
   trendAPP();
   sub();
 }, console.error);
