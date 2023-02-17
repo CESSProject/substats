@@ -57,19 +57,15 @@ git clone https://github.com/CESSProject/substats.git
 cd substats
 ```
 
-### 2). Install API server
+### 2). Install node modules of web server.
 
 ```bash
 npm install
 ```
 
-### 3). Install UI package
+>  The front-end source code dir is "/ui",If you have modified it,you need rebuild the front-end project, please read [this document](./ui/README.md) .
 
-```bash
-cd ui && npm install
-```
-
-### 4). Config
+### 3). Config
 
 This project supports most of the chain of polkadot ecosystem. You can switch as long as you modify the RPC node address in the configuration file :
 
@@ -84,17 +80,6 @@ npm run test
 ```
 
 ## 5. Run guide
-
-
-### 1). Build front-end page
-
-```bash
-cd ui && npm run build
-```
-
-> Automatically generate html files to the build folder
-
-### 2). Run
 
 ```bash
 npm start
@@ -140,10 +125,9 @@ docker build -t cesslab/substats .
 > It will listen on the port 8080
 
 ```bash
-docker pull cesslab/substats:latest
 
 docker compose -f demo/docker-compose.yml up -d
-// or other version docker compose
+# or other version docker compose
 docker-compose -f demo/docker-compose.yml up -d
 
 ```
