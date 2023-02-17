@@ -180,6 +180,20 @@ CREATE TABLE IF NOT EXISTS `tb_power_trend` (
   UNIQUE KEY `dateStr` (`dateStr`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='power';
 
+CREATE TABLE `tb_trend` (
+	`id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+	`catId` INT(10) NOT NULL DEFAULT '0',
+	`dataValue` DECIMAL(20,2) NOT NULL DEFAULT '0.00',
+	`dateStr` VARCHAR(50) NOT NULL DEFAULT '0' COLLATE 'utf8_general_ci',
+	PRIMARY KEY (`id`) USING BTREE,
+	UNIQUE INDEX `dateStr` (`dateStr`) USING BTREE
+)
+COMMENT='trend'
+COLLATE='utf8_general_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=1
+;
+
 -- init dictionary data
 INSERT INTO tb_dictionary_category(`id`,`name`) VALUES (1,'status');
 INSERT INTO tb_dictionary (`category_id`, `sort_id`, `value`, `label`, `about`, `color`) VALUES (1, 1, 1, 'pending', 'status is pending', 'red');

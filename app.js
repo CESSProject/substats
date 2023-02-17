@@ -1,15 +1,16 @@
 const webconfig = require("./webconfig");
-global.webconfig = webconfig;//set grobal attribute for more convenient call
+global.webconfig = webconfig; //set grobal attribute for more convenient call
 const initDatabaseConfig = require("./bll/init-database-config");
 
 // check the run arguments and use the corresponding database
 const arguments = process.argv;
 let dbconfigFile = null;
-if (arguments.length > 2) {//get config from command arguments
+if (arguments.length > 2) {
+  //get config from command arguments
   console.log("arguments[2]", arguments[2]);
   dbconfigFile = arguments[2];
 }
-initDatabaseConfig(dbconfigFile);//init the database config from config file
+initDatabaseConfig(dbconfigFile); //init the database config from config file
 
 const express = require("express");
 const compression = require("compression");
@@ -21,7 +22,8 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const expressWs = require("express-ws");
 require("./util/add-functions");
-const myapp = require("./app/sync-block/index.js");
+const syncBlockAPP = require("./app/sync-block/index.js");
+const trendAPP = require("./app/trend-record");
 
 const routes = require("./routes/index");
 const api = require("./routes/api");
@@ -44,7 +46,7 @@ app.use(compression()); //gzip
 app.use(cors());
 
 // uncomment after placing your favicon in /public
-app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
+app.use(favicon(path.join(__dirname, "ui/build", "favicon.ico")));
 
 //add log with the format
 logger.token("time", function (req, res) {
@@ -68,22 +70,24 @@ app.use(
 
 // will can get req.body object
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false, limit: "10000kb" }));//max req size
-// app.use(express.static(path.join(__dirname, "ui/build")));
-app.use(express.static(path.join(__dirname, "public")));//config the static dir
+app.use(bodyParser.urlencoded({ extended: false, limit: "10000kb" })); //max req size
+app.use(express.static(path.join(__dirname, "ui/build")));
+app.use(express.static(path.join(__dirname, "public"))); //config the static dir
 
-app.use("/", routes);//base path
-app.use("/api", api);//api router
+app.use("/", routes); //base path
+app.use("/api", api); //api router
 app.ws("/ws", ws); // websocker router
 app.use(function (req, res, next) {
-  var err = new Error("Not Found");
-  err.status = 404;
-  next(err);
+  // var err = new Error("Not Found");
+  // err.status = 404;
+  // next(err);
+  res.sendFile(path.join(__dirname, "ui/build")+'/index.html');
 });
 app.use(function (err, req, res, next) {
   if (err == 404) {
     err = new Error("404 not found");
-    err.status = 404;
+    
+    return;
   } else if (typeof err != "object") {
     err = new Error(err);
   }
@@ -98,13 +102,14 @@ app.use(function (err, req, res, next) {
     error: err,
   });
 });
-global.wsClientList = [];//all websocker client
-initDotChain().then(t=>{ // init the chain connect
-  myapp();
+global.wsClientList = []; //all websocker client
+initDotChain().then((t) => {
+  // init the chain connect
+  // syncBlockAPP();
+  trendAPP();
   sub();
-},console.error);
+}, console.error);
 init();
 
-
-app.listen(port);//start the http webserver
+app.listen(port); //start the http webserver
 console.log("listening on ", port);

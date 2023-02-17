@@ -20,18 +20,25 @@ We have designed a set of explorer modular components for the Substrate ecosyste
 - [database-init](./documents/database-init.sql)
 - [testing-guide](./documents/testing-guide.md)
 
-
-
+### Online preview
+<https://polkadot.cess.cloud>
 
 ## 2. Technology stack used
 
-### a. Node.js API
+### a. Back-end Node.js webserver
 
 - Web Server:Express
 - Database:Mysql/SQLite3
 - Polkadot.js
 
-### b. Tool Versions
+
+### b. Front-End UI
+
+- React.js
+- Ant-design
+- Less
+
+### c. Tool Versions
 
 - node             v16.14+
 - npm              v9.2.0+
@@ -41,32 +48,28 @@ We have designed a set of explorer modular components for the Substrate ecosyste
 
 ## 3. Install guide
 
-> Note : This system supports MySQL and sqlite3 databases. If npm start with a MySQL account config file, use MySQL else use sqlite3 database.
+> Note : This system supports MySQL and sqlite3 databases. If you want to use mysql database,please read the document [use-mysql-v5.7.md](./documents/use-mysql-v5.7.md) .
 
-### 1). Install database if use mysql
-- create a database with name "substats-w3f";
-- run the sql file [database-init](./documents/database-init.sql)
-- make database config file and content as:
-```javascript
-{
-  "connectionLimit": 10,
-  "host": "127.0.0.1",
-  "user": "substats",
-  "password": "kZtRazdBsxy3d2zs",
-  "port": 3306,
-  "database": "substats"
-}
+### 1). Clone code
+
+```bash
+git clone https://github.com/CESSProject/substats.git
+cd substats
 ```
 
 ### 2). Install API server
 
 ```bash
-git clone https://github.com/CESSProject/substats.git
-cd substats
-npm install // or yarn
+npm install
 ```
 
-### 3). Config
+### 3). Install UI package
+
+```bash
+cd ui && npm install
+```
+
+### 4). Config
 
 This project supports most of the chain of polkadot ecosystem. You can switch as long as you modify the RPC node address in the configuration file :
 
@@ -82,40 +85,41 @@ npm run test
 
 ## 5. Run guide
 
-### 1). Run API server
+
+### 1). Build front-end page
 
 ```bash
-npm start  //will use the sqlite3 database.
+cd ui && npm run build
+```
 
-// or run whith custom database config file
-npm start ./mysql-config.json    //will use the mysql database.
+> Automatically generate html files to the build folder
+
+### 2). Run
+
+```bash
+npm start
 ```
 
 > It will listen on the port 8080
 
-> Note : If npm start with a MySQL account config file, use MySQL , else use the sqlite3 database.
+> Open the page in browser:  [http://localhost:8080/](http://localhost:8080/)
 
 
-## 6. Inspect the system status
-Open the page in browser: 
-
-[http://localhost:8080/system-status.html]([http://localhost:8080/system-status.html])
-
-
-## 7. Project file structure
+## 6. Project file structure
 
 ```bash
-├── app/                #  timer app
-├── package.json        #  package
+├── app/                # timer app
+├── package.json        # package
 ├── bll/                # business
 ├── controls/           # control layer
-├── dal/                # data Access Layer
+├── dal/                # data access layer
 ├── routes/             # server routes
+├── ui/                 # ui
 ├── .gitignore          # git ignore file
 ├── app.js              # server main
 └── web.config          # server config
 ```
-## 8. Docker guide
+## 7. Docker guide
 
 You can build docker image and then run it or run image by docker compose directly.
 
@@ -143,4 +147,4 @@ docker compose -f demo/docker-compose.yml up -d
 docker-compose -f demo/docker-compose.yml up -d
 
 ```
-* Open [this page](http://localhost:8080/system-status.html) in browser
+* Open [this page](http://localhost:8080) in browser
