@@ -1,6 +1,6 @@
 # Substats UI
 
-This is the UI system
+This is the UI project
 
 ### Technology stack used
 

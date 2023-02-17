@@ -1,6 +1,6 @@
-const Dal = require("../../dal/dal-common");
-const util = require("../../util/common");
+const http = require("../../util/http-helper.js");
 const moment = require("moment");
+const webconfig = require("../../webconfig.js");
 
 const save = require("./dal");
 
@@ -12,7 +12,12 @@ async function main() {
 }
 
 async function query() {
-  return util.random(5, 8);
+  try {
+    let json = await http.get(webconfig.tokenPriceAPI);
+    return json.lastPrice;
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 module.exports = main;
