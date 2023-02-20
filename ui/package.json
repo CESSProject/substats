@@ -30,7 +30,8 @@
   },
   "scripts": {
     "start": "cross-env REACT_APP_ENVIRONMENT=development craco start",
-    "build": "cross-env REACT_APP_ENVIRONMENT=production craco build"
+    "build": "cross-env REACT_APP_ENVIRONMENT=production craco build",
+    "build:ui": "cross-env REACT_APP_ENVIRONMENT=production craco build"
   },
   "eslintConfig": {
     "extends": [

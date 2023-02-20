@@ -12,9 +12,6 @@ This is the UI project
 
 ```bash
 npm install
-// or
-yarn
-
 ```
 
 ### Run
