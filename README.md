@@ -21,7 +21,18 @@ We have designed a set of explorer modular components for the Substrate ecosyste
 - [testing-guide](./documents/testing-guide.md)
 
 ### Online preview
+We use substatus builded the following browser for preview :
+
 <https://polkadot.cess.cloud>
+
+and 
+
+<https://kusama.cess.cloud>
+
+and
+
+<https://moonbeam.cess.cloud>
+
 
 ## 2. Technology stack used
 
