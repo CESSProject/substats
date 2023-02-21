@@ -45,7 +45,7 @@ The main color: #e6007a
 
 You can modify the color in this file
 
-[/ui/src/index.less#L14](https://github.com/CESSProject/substats/blob/master/ui/src/index.less#L14)
+[/ui/src/index.less#L11](https://github.com/CESSProject/substats/blob/master/ui/src/index.less#L11)
 
 #### b. Modify the project LOGO
 
