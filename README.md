@@ -13,12 +13,6 @@ We have designed a set of explorer modular components for the Substrate ecosyste
 
 ● **Open source and security**: Substats only provides completely open source code, and is not responsible for replacing management and operation services. All services are deployed and operated by the project party, avoiding trust costs.
 
-### More documents
-
-- [about-framework](./documents/about-framework.md)
-- [api-docs](./documents/api-docs.md)
-- [database-init](./documents/database-init.sql)
-- [testing-guide](./documents/testing-guide.md)
 
 ### Online preview
 We have built browsers as sample with substats framework:
@@ -36,7 +30,7 @@ and
 
 ## 2. Technology stack used
 
-### a. Back-end Node.js webserver
+### a. Back-End Node.js webserver
 
 - Web Server:Express
 - Database:Mysql/SQLite3
@@ -74,7 +68,7 @@ cd substats
 npm install
 ```
 
->  The front-end source code dir is "/ui",If you have modified it,you need rebuild the front-end project, please read [this document](./ui/README.md) .
+>  The front-end source code dir is "/ui",If you have modified it,please rebuild the front-end project, more info in [this document](./ui/README.md) .
 
 ### 3). Config
 
@@ -110,7 +104,7 @@ npm start
 ├── controls/           # control layer
 ├── dal/                # data access layer
 ├── routes/             # server routes
-├── ui/                 # ui
+├── ui/                 # ui project
 ├── .gitignore          # git ignore file
 ├── app.js              # server main
 └── web.config          # server config
@@ -126,8 +120,6 @@ You can build docker image and then run it or run image by docker compose direct
 * The latest `cesslab/substats:latest` image has been pushed to docker hub
 
 ```bash
-git clone https://github.com/CESSProject/substats.git
-cd substats
 docker build -t cesslab/substats .
 ```
 
@@ -135,13 +127,14 @@ docker build -t cesslab/substats .
 * Docker Compose version v2.12+
 * Change work directory to project directory, then use cmd like bellow:
 
-> It will listen on the port 8080
-
 ```bash
-
 docker compose -f demo/docker-compose.yml up -d
 # or other version docker compose
 docker-compose -f demo/docker-compose.yml up -d
-
 ```
+
+
+> It will listen on the port 8080
+
+
 * Open [this page](http://localhost:8080) in browser
