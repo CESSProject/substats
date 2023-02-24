@@ -67,10 +67,11 @@ export default {
 ```
 #### d. Modify components
 
+If you are front-end developer and want to extend customized UI components, you can add or modify them in this directory:
+
 ```bash
 /ui/src/components
 ```
-If you are familiar with front-end development, you can modify components according to your needs.
 
 
 ## 4. build
