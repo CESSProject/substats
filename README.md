@@ -21,7 +21,18 @@ We have designed a set of explorer modular components for the Substrate ecosyste
 - [testing-guide](./documents/testing-guide.md)
 
 ### Online preview
+We have built browsers as sample with substats framework:
+
 <https://polkadot.cess.cloud>
+
+and 
+
+<https://kusama.cess.cloud>
+
+and
+
+<https://moonbeam.cess.cloud>
+
 
 ## 2. Technology stack used
 
@@ -110,15 +121,17 @@ You can build docker image and then run it or run image by docker compose direct
 
 > To simplify the docker running environment, we use the sqlite database in docker.
 
-#### 1. Build docker image
+#### a. Build docker image
 * Docker Engine Version: 20.10+
 * The latest `cesslab/substats:latest` image has been pushed to docker hub
+
 ```bash
 git clone https://github.com/CESSProject/substats.git
 cd substats
 docker build -t cesslab/substats .
 ```
-#### 2. Run demo by docker compose
+
+#### b. Run demo by docker compose
 * Docker Compose version v2.12+
 * Change work directory to project directory, then use cmd like bellow:
 

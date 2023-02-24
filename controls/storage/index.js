@@ -3,7 +3,7 @@
  * @Autor: fage
  * @Date: 2022-07-11 15:11:35
  * @LastEditors: lanmeng656 lanmeng656@google.com
- * @LastEditTime: 2023-01-17 10:18:33
+ * @LastEditTime: 2023-02-21 17:12:14
  * @description: about
  * @author: chenbinfa
  */
@@ -21,7 +21,11 @@ module.exports = async function (req, res, next) {
   if (!ac2) {
     return res.json({ msg: "ac2 not found." });
   }
-  await api.isReady;//wait connect ready
+  try{
+    await api.isReady;//wait connect ready
+  }catch(e){
+    return res.json({ msg: "error" });
+  }
   const param = req.body;
   if (!api.query[ac1]) {
     return res.json({ msg: "api.query." + ac1 + " not a function" });

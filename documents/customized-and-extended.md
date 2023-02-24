@@ -45,7 +45,7 @@ The main color: #e6007a
 
 You can modify the color in this file
 
-[/ui/src/index.less#L14](https://github.com/CESSProject/substats/blob/master/ui/src/index.less#L14)
+[/ui/src/index.less#L11](https://github.com/CESSProject/substats/blob/master/ui/src/index.less#L11)
 
 #### b. Modify the project LOGO
 
@@ -67,10 +67,11 @@ export default {
 ```
 #### d. Modify components
 
+If you are front-end developer and want to extend customized UI components, you can add or modify them in this directory:
+
 ```bash
 /ui/src/components
 ```
-If you are familiar with front-end development, you can modify components according to your needs.
 
 
 ## 4. build
