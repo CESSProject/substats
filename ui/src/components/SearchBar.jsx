@@ -59,7 +59,7 @@ const SearchBar = ({ className }) => {
       }
       setSearchType(type);
       setKeyword(v);
-    }
+    }    
   }, []);
 
   const onSearch = (e) => {

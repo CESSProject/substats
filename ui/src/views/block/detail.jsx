@@ -71,6 +71,8 @@ function Main({ className }) {
   const [transactionColumns, setTransactionColumns] = useState([]);
   const [eventColumns, setEventColumns] = useState([]);
 
+  const navigate = useNavigate();
+
   if (!q) {
     return message.error("blockHeight is not found");
   } else {
@@ -101,6 +103,15 @@ function Main({ className }) {
     if (result.msg != "ok") {
       return message.info(result.err || result.msg);
     }
+    if (result.data.length==0) {
+      return Modal.error({
+        title:'The block has not been synchronized to the database, please query later.',
+        afterClose:function(){
+          navigate('/');
+        }
+      });
+    }
+
     setBlockDetail(result.data[0]);
   }, [blockHeight]);
 
@@ -290,7 +301,7 @@ function Main({ className }) {
               <div className="line-block line-1">
                 <div className="mini-block">
                   <div>Block Time</div>
-                  <label>32 secs ago</label>
+                  <label>{moment(blockDetail.timestamp).fromNow()}</label>
                 </div>
                 <div className="mini-block">
                   <div>Timestamp</div>

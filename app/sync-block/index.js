@@ -32,7 +32,7 @@ async function main() {
   common.useTime("init polkdot chain rpc", 1);
   api = await init();
   global.api = api;
-  spinner.success({ text: 'connect successful!'});
+  spinner.success({ text: "connect successful!" });
   common.useTime("init polkdot chain rpc");
   console.log("starting sync block info...");
 
@@ -42,7 +42,7 @@ async function main() {
 
   api.rpc.chain.subscribeNewHeads((header) => {
     maxHeight = header.number.toNumber();
-    console.log(`maxHeight ${header.number}`);
+    // console.log(`last block height ${header.number}`);
   });
   let sql = "select blockHeight from ?? order by blockHeight desc limit 1";
   let param = [dalBlock.tableName];
@@ -59,8 +59,17 @@ async function main() {
   // return;
   while (true) {
     currHeight = await loopGetBlock(currHeight, maxHeight);
+    if (currHeight == -1) {
+      console.log("WebSocket connected error,try after 20s.");
+      setTimeout(function () {
+        main();
+      }, 20000);
+      break;
+    }
     if (currHeight >= maxHeight) {
       await util.sleep(2000);
+    } else {
+      await util.sleep(1000);
     }
   }
 }
@@ -87,17 +96,19 @@ async function loopGetBlock(start, end) {
         txCount,
         eventCount
       );
+      index = i;
     } catch (e) {
-      api = await init();
-      console.error(e);
+      // api = await init();
+      console.error(e.message);
+      index = -1;
+      break;
     }
-    index = i;
   }
   return index;
 }
 
 function showLog(...msg) {
-  console.log(...msg);
+  // console.log(...msg);
 }
 function sendLog(msg, data) {
   wsHelper.send("log", "append", data);

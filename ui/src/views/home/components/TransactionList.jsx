@@ -44,6 +44,7 @@ import {
 } from "@utils/format";
 
 const Main = ({ className, list }) => {
+  const navigate = useNavigate();
   if (!list) return "";
   list.forEach((t) => {
     t.timestamp_str = moment(t.timestamp).fromNow();
@@ -57,7 +58,11 @@ const Main = ({ className, list }) => {
     <div className={className}>
       {list.map((t, i) => {
         return (
-          <div className="line" key={i}>
+          <div
+            className="line"
+            key={i}
+            onClick={() => navigate("/transfer/" + t.hash)}
+          >
             <div className="line-left">
               <div>
                 <b>Transaction#</b>
@@ -65,7 +70,7 @@ const Main = ({ className, list }) => {
               </div>
               {t.destAccount ? (
                 <div>
-                  From <font className="main-font">{t.signer}</font> to 
+                  From <font className="main-font">{t.signer}</font> to
                   <font className="main-font">{t.destAccount}</font>
                 </div>
               ) : (
@@ -99,6 +104,7 @@ export default React.memo(styled(Main)`
     width: 100%;
     border-bottom: 1px solid #eee;
     padding: 10px;
+    cursor:pointer;
     .line-left {
       width: 70%;
       display: block;

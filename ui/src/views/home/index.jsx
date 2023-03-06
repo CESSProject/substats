@@ -23,8 +23,9 @@ import {
   Popconfirm,
   Checkbox,
   Card,
-  Form,
+  Spin,
 } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 import _ from "lodash";
 import "./index.less";
 import storageAJAX from "@services/storage";
@@ -60,7 +61,7 @@ const Home = ({ ...props }) => {
   const [totalIssuance, setTotalIssuance] = useState(0);
   const [totalTransactions, setTotalTransactions] = useState(0);
   const [blockHeight, setBlockHeight] = useState("loading...");
-  const [validators, setValidators] = useState("");
+  const [validators, setValidators] = useState("loading");
   const [timeSec, setTimeSec] = useState("--");
   const [staking, setStaking] = useState("--");
   const [stakingPer, setStakingPer] = useState("--");
@@ -113,8 +114,17 @@ const Home = ({ ...props }) => {
     // setPropsTable(props);
   }, []);
 
-  //query transaction count
   useEffect(() => {
+    setTimeout(function () {
+      if (document.getElementById("searchInput")) {
+        document.getElementById("searchInput").value = "";
+      }
+    }, 1);
+  }, []);
+
+  useEffect(() => {
+    //query transaction count
+
     ignore = false;
     async function run() {
       if (ignore) return;
@@ -146,6 +156,7 @@ const Home = ({ ...props }) => {
         ac2: "authorities",
       });
       if (result.msg != "ok") {
+        setValidators("no");
         return;
       }
       const count = result.data.length;
@@ -171,6 +182,7 @@ const Home = ({ ...props }) => {
     result = await storageAJAX({ ac1: "staking", ac2: "erasTotalStake" });
     if (result.msg != "ok") {
       console.log(result);
+      setStakingPer("no");
       return;
     }
     let stakingInt = parseInt(result.data[0], 16);
@@ -217,57 +229,99 @@ const Home = ({ ...props }) => {
     <div className="containner-in">
       <div className="top-price-box"></div>
       <div>
-          <div className="chart-box block">
-            <Overview className="chart-left myRadius" />
-            <div className="chart-right myRadius">
-              <div className="box-title">Network Overview</div>
-              <div className="box-con">
-                <div className="block-1">
-                  <div>Finalized Block</div>
-                  <span>{blockHeight}</span>
-                  <div style={{ fontSize: 18, color: "red" }}>{timeSec}</div>
-                </div>
-                <div className="block-1">
-                  <div>Transaction</div>
-                  <span>{totalTransactions}</span>
-                </div>
-                <div className="block-1">
-                  <div>Total issuance</div>
-                  <span>{totalIssuance}</span>
-                </div>
-                <div className="block-1">
-                  <div>Validators</div>
+        <div className="chart-box block">
+          <Overview className="chart-left myRadius" />
+          <div className="chart-right myRadius">
+            <div className="box-title">Network Overview</div>
+            <div className="box-con">
+              <div className="block-1">
+                <div>Finalized Block</div>
+                <span>{blockHeight}</span>
+                <div style={{ fontSize: 18, color: "red" }}>{timeSec}</div>
+              </div>
+              <div className="block-1">
+                <div>Transaction</div>
+                <span>{totalTransactions}</span>
+              </div>
+              <div className="block-1">
+                <div>Total issuance</div>
+                <span>{totalIssuance}</span>
+              </div>
+              <div className="block-1">
+                <div>Validators</div>
+                {validators == "no" ? (
+                  <span style={{ fontSize: "14px", fontWeight: "lighter" }}>
+                    Chain not supported
+                  </span>
+                ) : validators == "loading" ? (
+                  <Spin spinning={true}>
+                    <span style={{ fontSize: "14px", fontWeight: "lighter" }}>
+                      Loading...
+                    </span>
+                  </Spin>
+                ) : (
                   <span>{validators}</span>
-                </div>
+                )}
               </div>
             </div>
           </div>
-          <div className="list-box block">
-            <div className="l-box-1">
+        </div>
+        <div className="list-box block">
+          <div className="l-box-1">
+            {stakingPer == "no" ? (
+              <div className="l-box-1-top">
+                <div className="l-box-1-top-left">
+                  <div className="box-title">Total Staking Rate</div>
+                  <span
+                    className="main-font"
+                    style={{ fontSize: "14px", lineHeight: "130px" }}
+                  >
+                    Not supported the staking pallet.
+                  </span>
+                </div>
+              </div>
+            ) : stakingPer == "--" ? (
+              <Spin spinning={true}>
+                <div className="l-box-1-top">
+                  <div className="l-box-1-top-left">
+                    <div className="box-title">Total Staking Rate</div>
+                    <span
+                      className="main-font"
+                      style={{ fontSize: "14px", lineHeight: "130px" }}
+                    >
+                      Loading...
+                    </span>
+                  </div>
+                </div>
+              </Spin>
+            ) : (
               <div className="l-box-1-top">
                 <div className="l-box-1-top-left">
                   <div className="box-title">Total Staking Rate</div>
                   <span className="main-font">{stakingPer}%</span>
-                  <label>{staking}M {webconfig.tokenName}</label>
+                  <label>
+                    {staking}M {webconfig.tokenName}
+                  </label>
                 </div>
                 <div className="l-box-1-top-right">
                   <StorageChart stakingPer={stakingPer} />
                 </div>
               </div>
-              <div className="l-box-1-bottom">
-                <TransactionTrend />
-              </div>
+            )}
+            <div className="l-box-1-bottom">
+              <TransactionTrend />
             </div>
-            <div className="l-box-2">
-              <div className="l-box-2-1">
-                <Blocks />
-              </div>
-              <div className="l-box-2-1">
-                <Transactions />
-              </div>
+          </div>
+          <div className="l-box-2">
+            <div className="l-box-2-1">
+              <Blocks />
+            </div>
+            <div className="l-box-2-1">
+              <Transactions />
             </div>
           </div>
         </div>
+      </div>
     </div>
   );
 };

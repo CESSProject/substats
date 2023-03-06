@@ -10,7 +10,7 @@ const path = require("path");
 module.exports = {
   sitename: "CESS Brower",
   wsnode: {
-    nodeURL:  "wss://1rpc.io/dot", // config the block chain node rpc websocket url
+    nodeURL:  "wss://rpc.dotters.network/polkadot", // config the block chain node rpc websocket url
     // nodeURL: "wss://rpc.dotters.network/polkadot",
     // nodeURL: "wss://polkadot-rpc.dwellir.com",
     // nodeURL: "wss://polkadot-rpc-tn.dwellir.com", 
