@@ -60,7 +60,7 @@ const SearchBar = ({ className, space }) => {
       let per = ((t.dataValue - min) / (max - min)) * 100;
       let p = (((per + 20) / 120) * 100).toFixed(2);
       return {
-        time: t.dateStr+'*'+t.id,
+        time: t.dateStr,
         v: t.dataValue,
         p,
       };

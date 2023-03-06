@@ -84,7 +84,7 @@ async function main(blockInfo, blockHeight, events) {
             let a = arr[i];
             entity.method = a.method;
             entity.section = a.section;
-            entity.destAccount = a.args.dest.Id;
+            entity.destAccount = a.args?.dest?.Id;
             await accountSave(entity.destAccount);
             entity.amount = a.args.value;
             if (i > 0) {

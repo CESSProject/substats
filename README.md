@@ -19,14 +19,6 @@ We have built browsers as sample with substats framework:
 
 <https://polkadot.cess.cloud>
 
-and 
-
-<https://kusama.cess.cloud>
-
-and
-
-<https://moonbeam.cess.cloud>
-
 
 ## 2. Technology stack used
 

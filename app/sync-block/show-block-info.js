@@ -36,7 +36,7 @@ async function getBlock(value) {
   console.log("******************", hash);
   const blockInfo = await api.rpc.chain.getBlock(hash);
   const blockHeight = blockInfo.block.header.number.toNumber();
-  console.log("blockHeight", blockHeight);
+  console.log("latest block-height on chain:", blockHeight);
 
   // const events = await api.query.system.events.at(hash);
   let entity = blockInfo.block.toHuman();

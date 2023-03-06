@@ -6,7 +6,7 @@ async function main() {
   await price();
   setTimeout(function () {
     main();    
-  }, 3600000);
+  }, 10000);
 }
 
 // main();

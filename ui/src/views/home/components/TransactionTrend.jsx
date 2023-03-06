@@ -46,7 +46,8 @@ async function ajax() {
     }]
   };
   let result = await queryDB.list(params);
-  return result.data;
+  let list=result.data.reverse();
+  return list;
 }
 
 const SearchBar = ({ className, space }) => {

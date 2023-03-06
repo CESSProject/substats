@@ -51,7 +51,7 @@ const navBtn = [
   },
   {
     path: "/transfer/",
-    name: "Transfers",
+    name: "Transactions",
     icon: <SwapOutlined />,
   },
   {
@@ -83,7 +83,7 @@ const items = [
     <img width={18} src={process.env.PUBLIC_URL + "/img/icon_yhgl.png"} />,
     [
       getItem("Blocks", "/block/"),
-      getItem("Transfers", "/transfer/"),
+      getItem("Transactions", "/transfer/"),
       getItem("Accounts", "/account/"),
     ]
   ),

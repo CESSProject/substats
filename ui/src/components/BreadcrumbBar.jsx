@@ -21,7 +21,7 @@ const breadcrumbNameMap = {
 		icon: "icon_lian.png"
 	},
 	"/transfer/": {
-		name: "Transfers",
+		name: "Transactions",
 		icon: "icon_jh.png"
 	},
 	"/miner/": {
